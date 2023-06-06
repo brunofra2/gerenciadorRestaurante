@@ -1,5 +1,6 @@
 package br.com.bruno.maida.teste.gerenciadorRestaurante.data.vo;
 
+import br.com.bruno.maida.teste.gerenciadorRestaurante.data.vo.enuns.CategoriaDto;
 import br.com.bruno.maida.teste.gerenciadorRestaurante.model.Produto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,4 +22,5 @@ public class ProdutoDto implements Serializable {
     private String nome;
     private Double valor;
     private String imagem;
+    private CategoriaDto categoria;
 }

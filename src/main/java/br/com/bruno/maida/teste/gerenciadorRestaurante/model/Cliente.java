@@ -1,10 +1,18 @@
 package br.com.bruno.maida.teste.gerenciadorRestaurante.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity(name = "Cliente")
 @Table(name = "cliente")
-public class Cliente {
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class Cliente implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cliente_id", nullable = false)

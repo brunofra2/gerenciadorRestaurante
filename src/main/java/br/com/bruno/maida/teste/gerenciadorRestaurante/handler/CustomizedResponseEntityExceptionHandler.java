@@ -6,8 +6,10 @@ import br.com.bruno.maida.teste.gerenciadorRestaurante.exceptions.ExceptionRespo
 import br.com.bruno.maida.teste.gerenciadorRestaurante.exceptions.InvalidJwtAuthenticationException;
 import br.com.bruno.maida.teste.gerenciadorRestaurante.exceptions.RequiredObjectIsNullException;
 import br.com.bruno.maida.teste.gerenciadorRestaurante.exceptions.ResourceNotFoundException;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.lang.Nullable;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,6 +27,7 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
 
 		ExceptionResponse exceptionResponse = new ExceptionResponse(
 				new Date(),
+				String.valueOf(HttpStatus.INTERNAL_SERVER_ERROR),
 				ex.getMessage(),
 				request.getDescription(false));
 
@@ -37,6 +40,7 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
 
 		ExceptionResponse exceptionResponse = new ExceptionResponse(
 				new Date(),
+				String.valueOf(HttpStatus.NOT_FOUND),
 				ex.getMessage(),
 				request.getDescription(false));
 
@@ -49,6 +53,7 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
 
 		ExceptionResponse exceptionResponse = new ExceptionResponse(
 				new Date(),
+				String.valueOf(HttpStatus.BAD_REQUEST),
 				ex.getMessage(),
 				request.getDescription(false));
 
@@ -61,23 +66,24 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
 
 		ExceptionResponse exceptionResponse = new ExceptionResponse(
 				new Date(),
+				String.valueOf(HttpStatus.FORBIDDEN),
 				ex.getMessage(),
 				request.getDescription(false));
 
 		return new ResponseEntity<>(exceptionResponse, HttpStatus.FORBIDDEN);
 	}
 
-//	@Override
-//	protected ResponseEntity<Object> handleExceptionInternal(
-//			Exception ex, @Nullable Object body, HttpHeaders headers, HttpStatus status, WebRequest request) {
-//
-//		ExceptionResponse exceptionResponse = new ExceptionResponse(
-//				new Date(),
-//				String.valueOf(status.value()),
-//				ex.getMessage(),
-//				request.getDescription(false));
-//
-//		return new ResponseEntity<>(body, headers, status);
-//	}
+	@Override
+	protected ResponseEntity<Object> handleExceptionInternal(
+			Exception ex, @Nullable Object body, HttpHeaders headers, HttpStatus status, WebRequest request) {
+
+		ExceptionResponse exceptionResponse = new ExceptionResponse(
+				new Date(),
+				String.valueOf(status.value()),
+				ex.getMessage(),
+				request.getDescription(false));
+
+		return new ResponseEntity<>(body, headers, status);
+	}
 
 }
