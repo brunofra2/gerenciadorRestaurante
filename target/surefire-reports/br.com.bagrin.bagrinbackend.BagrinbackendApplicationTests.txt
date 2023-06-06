@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: br.com.bagrin.bagrinbackend.BagrinbackendApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 18.265 s - in br.com.bagrin.bagrinbackend.BagrinbackendApplicationTests
