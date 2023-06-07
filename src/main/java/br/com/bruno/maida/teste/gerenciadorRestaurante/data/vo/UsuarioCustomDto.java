@@ -1,40 +1,30 @@
-package br.com.bruno.maida.teste.gerenciadorRestaurante.model;
+package br.com.bruno.maida.teste.gerenciadorRestaurante.data.vo;
 
-import br.com.bruno.maida.teste.gerenciadorRestaurante.model.enuns.TipoUsuario;
-import lombok.*;
+import br.com.bruno.maida.teste.gerenciadorRestaurante.model.Usuario;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-
-import javax.persistence.*;
 import java.util.Collection;
 import java.util.List;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "Usuario")
-@Table(name = "usuario")
+@AllArgsConstructor
 @Builder
-public class Usuario implements UserDetails {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "usuario_id", nullable = false)
-    private Integer id;
+public class UsuarioCustomDto implements UserDetails {
 
-    @Column(name = "email")
-    private String email;
+    private String login;
+    private String senha;
 
-    @Column(name = "password")
-    private String password;
-
-    @Column(name = "nome", length = 45)
-    private String name;
-
-    @Column(name = "tipo_usuario")
-    private TipoUsuario typeUser;
-
+    public UsuarioCustomDto(Usuario usuario) {
+        this.login = usuario.getUsername();
+        this.senha = usuario.getPassword();
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -43,11 +33,12 @@ public class Usuario implements UserDetails {
 
     @Override
     public String getPassword() {
-        return password;
+        return senha;
     }
+
     @Override
     public String getUsername() {
-        return email;
+        return login;
     }
 
     @Override

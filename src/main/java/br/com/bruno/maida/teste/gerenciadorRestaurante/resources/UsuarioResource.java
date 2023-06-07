@@ -1,8 +1,11 @@
 package br.com.bruno.maida.teste.gerenciadorRestaurante.resources;
 
+import br.com.bruno.maida.teste.gerenciadorRestaurante.data.vo.LoginDto;
 import br.com.bruno.maida.teste.gerenciadorRestaurante.data.vo.UsuarioDto;
 import br.com.bruno.maida.teste.gerenciadorRestaurante.exceptions.ExceptionResponse;
 import br.com.bruno.maida.teste.gerenciadorRestaurante.facade.impl.UsuarioFacadeImpl;
+import br.com.bruno.maida.teste.gerenciadorRestaurante.model.Usuario;
+import br.com.bruno.maida.teste.gerenciadorRestaurante.services.impl.TokenService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -10,7 +13,13 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/restaurante/user/")
@@ -22,7 +31,14 @@ public class UsuarioResource {
     @Autowired
     private UsuarioFacadeImpl usuarioFacadeImpl;
 
-    @GetMapping("/login")
+    @Autowired
+    private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private TokenService tokenService;
+
+
+    @PostMapping("/login")
     @Operation(summary = "login", description = "Realiza o login do usuario",
             tags = {"Usuario"},
             responses = {
@@ -59,9 +75,16 @@ public class UsuarioResource {
                     }),
             }
     )
-    public UsuarioDto findUsuario(@RequestParam(name = "email") String email,
-                                    @RequestParam(name = "senha") String senha){
-        return usuarioFacadeImpl.findUsuario(email,senha);
+    public String findUsuario(@RequestBody LoginDto login){
+        UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
+                new UsernamePasswordAuthenticationToken(login.getEmail(),login.getPassword());
+
+        Authentication authentication = this.authenticationManager.authenticate(usernamePasswordAuthenticationToken);
+
+        var usuario = (Usuario) authentication.getPrincipal();
+
+        return  tokenService.gerarToken(usuario);
+
     }
 
     @GetMapping("/{id}")
@@ -145,7 +168,7 @@ public class UsuarioResource {
                     }),
             }
     )
-    public UsuarioDto create(@RequestBody UsuarioDto user){
+    public UsuarioDto create(@RequestBody UsuarioDto user) throws Exception{
         return usuarioFacadeImpl.create(user);
     }
 
