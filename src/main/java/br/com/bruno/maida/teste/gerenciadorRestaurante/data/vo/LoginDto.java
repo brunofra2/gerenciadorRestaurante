@@ -14,6 +14,7 @@ public class LoginDto {
 
     @JsonProperty("email")
     private String email;
+    @JsonProperty("senha")
     private String password;
 
 }
