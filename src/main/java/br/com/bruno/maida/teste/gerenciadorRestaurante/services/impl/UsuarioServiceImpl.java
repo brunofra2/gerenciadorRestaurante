@@ -51,9 +51,14 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public UsuarioDto update(UsuarioDto user) {
+    public UsuarioDto update(UsuarioDto user) throws java.lang.Exception {
 
         if (user == null) throw new RequiredObjectIsNullException();
+        Usuario existUsuario = usuarioRepository.findUsuario(user.getEmail());
+        if(existUsuario != null){
+            throw  new Exception("usuario já esta cadastrado");
+        }
+
 
         var entity = UsuarioMapper.convertDtoToModel(user);
         var vo =   UsuarioMapper.convertModelToDto(usuarioRepository.save(entity));

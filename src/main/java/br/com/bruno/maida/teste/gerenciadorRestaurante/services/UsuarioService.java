@@ -12,7 +12,7 @@ public interface UsuarioService {
 
     UsuarioDto create(UsuarioDto user) throws Exception;
 
-    UsuarioDto update(UsuarioDto user);
+    UsuarioDto update(UsuarioDto user) throws Exception;
 
     void delete(Integer id);
 

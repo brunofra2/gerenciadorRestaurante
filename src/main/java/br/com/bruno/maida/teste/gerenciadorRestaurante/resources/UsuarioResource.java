@@ -39,14 +39,14 @@ public class UsuarioResource {
 
 
     @PostMapping("/login")
-    @Operation(summary = "login", description = "Realiza o login do usuario",
+    @Operation(summary = "login", description = "Realiza o login do usuario, gerando o token para os demais acessos.",
             tags = {"Usuario"},
             responses = {
                     @ApiResponse(description = "Success", responseCode = "200",
                             content = {
                                     @Content(
                                             mediaType = "application/json",
-                                            array = @ArraySchema(schema = @Schema(implementation = UsuarioDto.class))
+                                            array = @ArraySchema(schema = @Schema(implementation = String.class))
                                     )
                             }),
                     @ApiResponse(description = "Bad Request", responseCode = "400", content = {
@@ -209,7 +209,7 @@ public class UsuarioResource {
                     }),
             }
     )
-    public UsuarioDto update(@RequestBody UsuarioDto user){
+    public UsuarioDto update(@RequestBody UsuarioDto user) throws Exception{
         return usuarioFacadeImpl.update(user);
     }
 

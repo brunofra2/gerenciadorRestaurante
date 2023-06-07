@@ -26,7 +26,7 @@ public class UsuarioFacadeImpl{
         return usuarioService.create(user);
     }
 
-    public UsuarioDto update(UsuarioDto user){
+    public UsuarioDto update(UsuarioDto user) throws Exception{
         return usuarioService.update(user);
     }
 
