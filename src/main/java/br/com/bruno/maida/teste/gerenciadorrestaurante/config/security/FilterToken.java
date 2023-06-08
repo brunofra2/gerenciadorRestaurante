@@ -16,7 +16,6 @@ import java.io.IOException;
 
 @Component
 public class FilterToken extends OncePerRequestFilter {
-
     @Autowired
     private UsuarioRepository usuarioRepository;
     @Autowired
@@ -44,4 +43,5 @@ public class FilterToken extends OncePerRequestFilter {
         }
         filterChain.doFilter(request,response);
     }
+
 }

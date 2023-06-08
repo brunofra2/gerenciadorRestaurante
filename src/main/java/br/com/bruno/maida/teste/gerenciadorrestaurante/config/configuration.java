@@ -1,13 +1,17 @@
 package br.com.bruno.maida.teste.gerenciadorrestaurante.config;
 
 import br.com.bruno.maida.teste.gerenciadorrestaurante.config.security.FilterToken;
+import br.com.bruno.maida.teste.gerenciadorrestaurante.config.security.MyUserDetailsServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -16,8 +20,11 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
-public class Configurations {
+@EnableGlobalMethodSecurity(prePostEnabled = true)
+public class configuration {
 
+    @Autowired
+    private MyUserDetailsServices myUserDetailsServices;
     @Autowired
     private FilterToken filter;
     @Bean
@@ -31,11 +38,15 @@ public class Configurations {
                 .antMatchers( "/swagger-ui/**",
                         "/swagger-ui.html**",
                         "/v3/api-docs/**","/restaurante/user/login"
-                ,"/restaurante/user/create").permitAll().
+                        ,"/restaurante/user/create").permitAll().
                 anyRequest().authenticated()
-                .and().addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class)
+                .and()
+                .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
+
+
+
     @Bean
     public AuthenticationManager authenticationManager(
             AuthenticationConfiguration authenticationConfiguration
@@ -47,5 +58,8 @@ public class Configurations {
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
-}
 
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(myUserDetailsServices).passwordEncoder(new BCryptPasswordEncoder());
+    }
+}

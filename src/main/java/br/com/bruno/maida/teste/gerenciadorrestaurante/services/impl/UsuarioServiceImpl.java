@@ -30,8 +30,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public Usuario findById(Integer id){
-        var usuarioOptional = usuarioRepository.findById(id);
-        return usuarioOptional.get();
+        return usuarioRepository.findById(id).get();
     }
 
     @Override

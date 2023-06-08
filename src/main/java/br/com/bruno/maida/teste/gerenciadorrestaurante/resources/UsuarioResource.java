@@ -1,5 +1,6 @@
 package br.com.bruno.maida.teste.gerenciadorrestaurante.resources;
 
+import br.com.bruno.maida.teste.gerenciadorrestaurante.config.security.MyUserDetailsServices;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.data.vo.LoginDto;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.data.vo.UsuarioDto;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.exceptions.ExceptionResponse;
@@ -15,8 +16,11 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -34,6 +38,12 @@ public class UsuarioResource {
 
     @Autowired
     private TokenService tokenService;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private MyUserDetailsServices myUserDetailsServices;
 
 
     @PostMapping("/login")
@@ -74,16 +84,16 @@ public class UsuarioResource {
             }
     )
     public String login(@RequestBody LoginDto login) {
-        UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
-                new UsernamePasswordAuthenticationToken(login.email(),
-                        login.senha());
 
-        Authentication authenticate = this.authenticationManager
-                .authenticate(usernamePasswordAuthenticationToken);
+            Authentication authenticate = this.authenticationManager
+                    .authenticate(new UsernamePasswordAuthenticationToken(login.email(),
+                            login.senha()));
 
-        var usuario = (Usuario) authenticate.getPrincipal();
+            var usuario = (Usuario) authenticate.getPrincipal();
 
-        return tokenService.gerarToken(usuario);
+            return tokenService.gerarToken(usuario);
+
+
 
     }
     @GetMapping("/{id}")
