@@ -11,6 +11,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,6 +27,8 @@ public class EnderecoResource {
     private EnderecoFacadeImpl enderecoFacade;
 
     @GetMapping("/all")
+
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @Operation(summary = "Busca", description = "Realiza a busca por Endereços, trazendo o todos os pedidos",
             tags = {"Endereco"},
             responses = {
@@ -67,6 +70,7 @@ public class EnderecoResource {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN','ROLE_USER')")
     @Operation(summary = "Busca por endereço", description = "Realiza a busca dos endereços através do id do cliente",
             tags = {"Endereco"},
             responses = {
@@ -108,6 +112,7 @@ public class EnderecoResource {
     }
 
     @PostMapping("/create")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN',ROLE_USER)")
     @Operation(summary = "Salvar", description = "Realiza a adição de um novo endereço",
             tags = {"Endereco"},
             responses = {
@@ -149,6 +154,8 @@ public class EnderecoResource {
     }
 
     @PutMapping("/update")
+
+    @PreAuthorize("hasAuthority('ROLE_ADMIN',ROLE_USER)")
     @Operation(summary = "Alterar", description = "Realiza a modificação de um endereço",
             tags = {"Endereco"},
             responses = {
@@ -190,6 +197,7 @@ public class EnderecoResource {
     }
 
     @DeleteMapping("/delete/{id}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN',ROLE_USER)")
     @Operation(summary = "Remover", description = "Deleta as informações do endereço selecionado",
             tags = {"Endereco"},
             responses = {

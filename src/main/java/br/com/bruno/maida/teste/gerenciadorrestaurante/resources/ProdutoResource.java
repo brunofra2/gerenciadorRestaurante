@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ public class ProdutoResource {
     private ProdutoFacadeImpl produtoFacade;
 
     @GetMapping("/all")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @Operation(summary = "Busca", description = "Realiza a busca por produtos, trazendo o todos os produtos",
             tags = {"Produto"},
             responses = {
@@ -65,6 +67,7 @@ public class ProdutoResource {
     }
 
     @GetMapping("by/{id}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @Operation(summary = "Busca por produto", description = "Realiza a busca por produto através de seu id",
             tags = {"Produto"},
             responses = {
@@ -108,6 +111,7 @@ public class ProdutoResource {
     }
 
     @PostMapping("/create")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @Operation(summary = "salvar produto", description = "Realiza a adição de um novo produto",
             tags = {"Produto"},
             responses = {
@@ -149,6 +153,7 @@ public class ProdutoResource {
     }
 
     @PutMapping("/update")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @Operation(summary = "Alterar", description = "Altera informações no produto selecionado por seu id",
             tags = {"Produto"},
             responses = {
@@ -190,6 +195,7 @@ public class ProdutoResource {
     }
 
     @DeleteMapping("/delete/{id}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @Operation(summary = "Remover", description = "Realiza a remoção de produtos do cardapio ",
             tags = {"Produto"},
             responses = {

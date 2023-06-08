@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,6 +24,7 @@ public class  ClienteResource  {
     private ClienteFacadeImpl clienteFacade;
 
     @GetMapping("/all")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @Operation(summary = "Busca", description = "Realiza a busca por clientes, trazendo o todos os produtos",
             tags = {"Cliente"},
             responses = {
@@ -64,6 +66,7 @@ public class  ClienteResource  {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @Operation(summary = "Busca por cliente", description = "Realiza a busca de um determinado cliente através de seu id",
             tags = {"Cliente"},
             responses = {
@@ -105,6 +108,7 @@ public class  ClienteResource  {
     }
 
     @PostMapping("/create")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN','ROLE_USER')")
     @Operation(summary = "salvar", description = "Adiciona as informações do cliente",
             tags = {"Cliente"},
             responses = {
@@ -146,6 +150,7 @@ public class  ClienteResource  {
     }
 
     @PutMapping("/update")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN','ROLE_USER')")
     @Operation(summary = "Alterar", description = "Altera as informações do cliente selecionado",
             tags = {"Cliente"},
             responses = {
@@ -187,6 +192,7 @@ public class  ClienteResource  {
     }
 
     @DeleteMapping("/delete/{id}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @Operation(summary = "Remover", description = "Deleta as informações do cliente selecionado",
             tags = {"Cliente"},
             responses = {

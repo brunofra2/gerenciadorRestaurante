@@ -13,6 +13,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -86,6 +87,8 @@ public class UsuarioResource {
 
     }
     @GetMapping("/{id}")
+
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @Operation(summary = "Busca usuario", description = "Realiza a busca por um determinado usuario pelo seu id",
             tags = {"Usuario"},
             responses = {
@@ -171,6 +174,7 @@ public class UsuarioResource {
     }
 
     @PutMapping("/update")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @Operation(summary = "Alteração de cadastro", description = "Realiza a alteração do cadastro do usuario",
             tags = {"Usuario"},
             responses = {
@@ -212,6 +216,7 @@ public class UsuarioResource {
     }
 
     @DeleteMapping("/delete/{id}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @Operation(summary = "delete", description = "Remove usuarios através de seu id",
             tags = {"Usuario"},
             responses = {
