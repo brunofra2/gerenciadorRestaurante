@@ -3,12 +3,13 @@ package br.com.bruno.maida.teste.gerenciadorrestaurante.facade.impl;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.Mapper.DozerMapper;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.data.vo.LoginDto;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.data.vo.UsuarioDto;
+import br.com.bruno.maida.teste.gerenciadorrestaurante.facade.UsuarioFacade;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UsuarioFacadeImpl{
+public class UsuarioFacadeImpl implements UsuarioFacade {
 
     @Autowired
     private UsuarioService usuarioService;

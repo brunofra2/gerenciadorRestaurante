@@ -2,6 +2,7 @@ package br.com.bruno.maida.teste.gerenciadorrestaurante.facade.impl;
 
 import br.com.bruno.maida.teste.gerenciadorrestaurante.Mapper.DozerMapper;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.data.vo.EnderecoDto;
+import br.com.bruno.maida.teste.gerenciadorrestaurante.facade.EnderecoFacade;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.services.EnderecoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class EnderecoFacadeImpl{
+public class EnderecoFacadeImpl implements EnderecoFacade {
 
     @Autowired
     private EnderecoService enderecoService;
@@ -20,8 +21,7 @@ public class EnderecoFacadeImpl{
 
     public List<EnderecoDto> findById(Integer id){
         var endereco  = enderecoService.findById(id);
-         List<EnderecoDto> enderecoDto = DozerMapper.parseListObjects(endereco,EnderecoDto.class);
-        return  enderecoDto;
+         return DozerMapper.parseListObjects(endereco,EnderecoDto.class);
     }
 
     public EnderecoDto create(EnderecoDto end){

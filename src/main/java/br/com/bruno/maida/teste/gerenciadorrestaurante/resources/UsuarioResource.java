@@ -3,7 +3,7 @@ package br.com.bruno.maida.teste.gerenciadorrestaurante.resources;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.data.vo.LoginDto;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.data.vo.UsuarioDto;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.exceptions.ExceptionResponse;
-import br.com.bruno.maida.teste.gerenciadorrestaurante.facade.impl.UsuarioFacadeImpl;
+import br.com.bruno.maida.teste.gerenciadorrestaurante.facade.UsuarioFacade;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.model.Usuario;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.services.impl.TokenService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.*;
 public class UsuarioResource {
 
     @Autowired
-    private UsuarioFacadeImpl usuarioFacadeImpl;
+    private UsuarioFacade usuarioFacadeImpl;
 
     @Autowired
     private AuthenticationManager authenticationManager;

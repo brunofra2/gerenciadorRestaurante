@@ -3,7 +3,7 @@ package br.com.bruno.maida.teste.gerenciadorrestaurante.resources;
 
 import br.com.bruno.maida.teste.gerenciadorrestaurante.data.vo.PedidoDto;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.exceptions.ExceptionResponse;
-import br.com.bruno.maida.teste.gerenciadorrestaurante.facade.impl.PedidoFacadeImpl;
+import br.com.bruno.maida.teste.gerenciadorrestaurante.facade.PedidoFacade;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -24,7 +24,7 @@ public class PedidoResource {
 
 
     @Autowired
-    private PedidoFacadeImpl pedidoFacade;
+    private PedidoFacade pedidoFacade;
 
     @GetMapping("/all")
     @PreAuthorize("hasAuthority('ROLE_ADMIN',ROLE_USER)")

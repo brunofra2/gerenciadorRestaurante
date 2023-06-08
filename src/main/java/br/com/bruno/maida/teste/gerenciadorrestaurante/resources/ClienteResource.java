@@ -2,7 +2,7 @@ package br.com.bruno.maida.teste.gerenciadorrestaurante.resources;
 
 import br.com.bruno.maida.teste.gerenciadorrestaurante.data.vo.ClienteDto;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.exceptions.ExceptionResponse;
-import br.com.bruno.maida.teste.gerenciadorrestaurante.facade.impl.ClienteFacadeImpl;
+import br.com.bruno.maida.teste.gerenciadorrestaurante.facade.ClienteFacade;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -21,7 +21,7 @@ import java.util.List;
 public class  ClienteResource  {
 
     @Autowired
-    private ClienteFacadeImpl clienteFacade;
+    private ClienteFacade clienteFacade;
 
     @GetMapping("/all")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
