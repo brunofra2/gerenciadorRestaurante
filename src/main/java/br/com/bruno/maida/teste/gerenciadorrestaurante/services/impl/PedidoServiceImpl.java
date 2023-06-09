@@ -9,52 +9,39 @@ import br.com.bruno.maida.teste.gerenciadorrestaurante.model.Pedido;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.data.vo.PedidoDto;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.repositories.PedidoRepository;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.Mapper.PedidoMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static br.com.bruno.maida.teste.gerenciadorrestaurante.utils.UtilServices.*;
+
 @Service
 public class PedidoServiceImpl implements PedidoService {
 
+
+    private final Logger LOGGER = LoggerFactory.getLogger(getClass());
     @Autowired
     private PedidoRepository pedidoRepository;
     @Autowired
     private ProdutoPedidoRepository produtoPedidoRepository;
 
+
     @Override
     public List<Pedido> findAll() {
-
-        return trazerprodutos(pedidoRepository.findAll());
+        return trazerprodutos(pedidoRepository.findUsuarioEmail(captUsuarioLogado())
+                ,produtoPedidoRepository);
     }
 
-    private List<Pedido> trazerprodutos(List<Pedido> pedidos){
-        List<Pedido> pedidoListComProdutos = new ArrayList<>();
-        List<Produto> produtoList = new ArrayList<>();
-
-        for (Pedido pe: pedidos
-             ) {
-            for (Integer i: produtoPedidoRepository.findByIdPedido(pe.getId())
-            ) {
-                produtoList.add(new Produto().builder()
-                        .id(i)
-                        .build());
-            }
-           pedidoListComProdutos.add( new Pedido().builder()
-                   .id(pe.getId())
-                   .total(pe.getTotal())
-                   .status(pe.getStatus())
-                   .fkCliente(pe.getFkCliente())
-                   .produtoList( produtoList)
-                   .build());
-        }
-        return pedidoListComProdutos;
-    }
 
     @Override
     public Pedido findById(Integer id) {
-        return pedidoRepository.findById(id).get();
+        return trazerprodutosbyId(pedidoRepository.findUsuarioEmailByid(captUsuarioLogado(),id),produtoPedidoRepository);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package br.com.bruno.maida.teste.gerenciadorrestaurante.model;
 
 import br.com.bruno.maida.teste.gerenciadorrestaurante.model.enuns.TipoUsuario;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

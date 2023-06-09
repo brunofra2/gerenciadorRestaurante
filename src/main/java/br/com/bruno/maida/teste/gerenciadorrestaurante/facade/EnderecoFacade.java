@@ -8,7 +8,7 @@ public interface EnderecoFacade {
 
     List<EnderecoDto> findAll();
 
-    List<EnderecoDto> findById(Integer id);
+    EnderecoDto findById(Integer id);
 
     EnderecoDto create(EnderecoDto end);
 

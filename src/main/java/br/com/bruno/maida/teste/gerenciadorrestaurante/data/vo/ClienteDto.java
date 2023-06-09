@@ -26,7 +26,6 @@ public class ClienteDto implements Serializable {
     @JsonProperty("nome")
     private String name;
     private String telefone;
-    @JsonIgnore
     @JsonProperty("usuario")
     private UsuarioDto fkUsuario;
 }

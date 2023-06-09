@@ -2,6 +2,7 @@ package br.com.bruno.maida.teste.gerenciadorrestaurante.data.vo;
 
 import br.com.bruno.maida.teste.gerenciadorrestaurante.data.vo.enuns.TipoUsuarioDto;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.model.Usuario;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;

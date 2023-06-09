@@ -11,6 +11,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,7 +28,7 @@ public class PedidoResource {
     private PedidoFacade pedidoFacade;
 
     @GetMapping("/all")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN',ROLE_USER)")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_USER')")
     @Operation(summary = "Busca", description = "Realiza a busca por pedidos, trazendo o todos os pedidos",
             tags = {"Pedido"},
             responses = {
@@ -69,7 +70,7 @@ public class PedidoResource {
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN',ROLE_USER)")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_USER')")
     @Operation(summary = "Busca por pedido", description = "Realiza a busca de um determinado pedido, por seu id",
             tags = {"Pedido"},
             responses = {
@@ -106,12 +107,12 @@ public class PedidoResource {
                     }),
             }
     )
-    public PedidoDto findById(@PathVariable Integer id){
-        return pedidoFacade.findById(id);
+    public ResponseEntity< PedidoDto> findById(@PathVariable Integer id){
+        return ResponseEntity.ok().body(pedidoFacade.findById(id));
     }
 
     @PostMapping("/create")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN',ROLE_USER)")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_USER')")
     @Operation(summary = "Salvar", description = "Realiza a adição de um novo pedido",
             tags = {"Pedido"},
             responses = {
@@ -148,12 +149,12 @@ public class PedidoResource {
                     }),
             }
     )
-    public PedidoDto create(@RequestBody PedidoDto end){
-        return pedidoFacade.create(end);
+    public ResponseEntity<PedidoDto> create(@RequestBody PedidoDto end){
+        return ResponseEntity.ok().body(pedidoFacade.create(end));
     }
 
     @PutMapping("/update")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN',ROLE_USER)")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_USER')")
     @Operation(summary = "Alterar", description = "Realiza a alteração de pedido",
             tags = {"Pedido"},
             responses = {
@@ -190,12 +191,12 @@ public class PedidoResource {
                     }),
             }
     )
-    public PedidoDto update(@RequestBody PedidoDto end){
-        return pedidoFacade.update(end);
+    public ResponseEntity<PedidoDto> update(@RequestBody PedidoDto end){
+        return ResponseEntity.ok().body(pedidoFacade.update(end));
     }
 
     @DeleteMapping("/delete/{id}")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN',ROLE_USER)")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_USER')")
     @Operation(summary = "Remover", description = "Deleta as informações do pedido selecionado",
             tags = {"Pedido"},
             responses = {

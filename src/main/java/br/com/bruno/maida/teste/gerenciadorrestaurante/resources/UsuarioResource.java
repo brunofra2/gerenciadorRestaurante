@@ -14,6 +14,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -97,7 +98,6 @@ public class UsuarioResource {
 
     }
     @GetMapping("/{id}")
-
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @Operation(summary = "Busca usuario", description = "Realiza a busca por um determinado usuario pelo seu id",
             tags = {"Usuario"},
@@ -135,8 +135,8 @@ public class UsuarioResource {
                     }),
             }
     )
-    public UsuarioDto findById(@PathVariable Integer id){
-        return usuarioFacadeImpl.findById(id);
+    public ResponseEntity<UsuarioDto> findById(@PathVariable Integer id){
+        return ResponseEntity.ok().body(usuarioFacadeImpl.findById(id));
     }
 
 
@@ -179,8 +179,8 @@ public class UsuarioResource {
                     }),
             }
     )
-    public UsuarioDto create(@RequestBody UsuarioDto user) throws Exception{
-        return usuarioFacadeImpl.create(user);
+    public ResponseEntity<UsuarioDto> create(@RequestBody UsuarioDto user) throws Exception{
+        return ResponseEntity.ok().body(usuarioFacadeImpl.create(user));
     }
 
     @PutMapping("/update")
@@ -221,8 +221,8 @@ public class UsuarioResource {
                     }),
             }
     )
-    public UsuarioDto update(@RequestBody UsuarioDto user) throws Exception{
-        return usuarioFacadeImpl.update(user);
+    public ResponseEntity<UsuarioDto> update(@RequestBody UsuarioDto user) throws Exception{
+        return ResponseEntity.ok().body(usuarioFacadeImpl.update(user));
     }
 
     @DeleteMapping("/delete/{id}")

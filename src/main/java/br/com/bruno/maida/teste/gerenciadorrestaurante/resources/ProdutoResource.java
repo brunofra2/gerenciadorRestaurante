@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -62,8 +63,8 @@ public class ProdutoResource {
                     }),
             }
     )
-    public List<ProdutoDto> findall(){
-        return produtoFacade.findall();
+    public ResponseEntity<List<ProdutoDto>> findall(){
+        return ResponseEntity.ok().body(produtoFacade.findall());
     }
 
     @GetMapping("by/{id}")
@@ -104,10 +105,8 @@ public class ProdutoResource {
                     }),
             }
     )
-    public List<ProdutoDto>  findById(@PathVariable Integer id){
-        List<ProdutoDto> lista = new ArrayList<>();
-        lista.add(produtoFacade.findById(id));
-        return lista;
+    public ResponseEntity<ProdutoDto>  findById(@PathVariable Integer id){
+        return ResponseEntity.ok().body(produtoFacade.findById(id));
     }
 
     @PostMapping("/create")
@@ -148,8 +147,8 @@ public class ProdutoResource {
                     }),
             }
     )
-    public ProdutoDto create(@RequestBody ProdutoDto pag){
-        return produtoFacade.create(pag);
+    public ResponseEntity<ProdutoDto> create(@RequestBody ProdutoDto pag){
+        return ResponseEntity.ok().body(produtoFacade.create(pag));
     }
 
     @PutMapping("/update")
@@ -190,8 +189,8 @@ public class ProdutoResource {
                     }),
             }
     )
-    public ProdutoDto update(@RequestBody ProdutoDto pag){
-        return produtoFacade.update(pag);
+    public ResponseEntity<ProdutoDto> update(@RequestBody ProdutoDto pag){
+        return ResponseEntity.ok().body(produtoFacade.update(pag));
     }
 
     @DeleteMapping("/delete/{id}")

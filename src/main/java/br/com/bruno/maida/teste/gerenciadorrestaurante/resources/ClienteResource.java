@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -61,8 +62,8 @@ public class  ClienteResource  {
                     }),
             }
     )
-    public List<ClienteDto> findAll(){
-        return clienteFacade.findAll();
+    public ResponseEntity<List<ClienteDto>> findAll(){
+        return ResponseEntity.ok().body(clienteFacade.findAll());
     }
 
     @GetMapping("/{id}")
@@ -103,12 +104,12 @@ public class  ClienteResource  {
                     }),
             }
     )
-    public ClienteDto findById(@PathVariable Integer id){
-        return clienteFacade.findById(id);
+    public ResponseEntity<ClienteDto> findById(@PathVariable Integer id){
+        return ResponseEntity.ok().body(clienteFacade.findById(id));
     }
 
     @PostMapping("/create")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN','ROLE_USER')")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_USER')")
     @Operation(summary = "salvar", description = "Adiciona as informações do cliente",
             tags = {"Cliente"},
             responses = {
@@ -145,12 +146,12 @@ public class  ClienteResource  {
                     }),
             }
     )
-    public ClienteDto create(@RequestBody ClienteDto cli){
-        return clienteFacade.create(cli);
+    public ResponseEntity<ClienteDto> create(@RequestBody ClienteDto cli){
+        return ResponseEntity.ok().body(clienteFacade.create(cli));
     }
 
     @PutMapping("/update")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN','ROLE_USER')")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_USER')")
     @Operation(summary = "Alterar", description = "Altera as informações do cliente selecionado",
             tags = {"Cliente"},
             responses = {
@@ -187,8 +188,8 @@ public class  ClienteResource  {
                     }),
             }
     )
-    public ClienteDto update(@RequestBody ClienteDto cli){
-        return clienteFacade.update(cli);
+    public ResponseEntity<ClienteDto> update(@RequestBody ClienteDto cli){
+        return ResponseEntity.ok().body(clienteFacade.update(cli));
     }
 
     @DeleteMapping("/delete/{id}")

@@ -9,7 +9,7 @@ public interface EnderecoService {
 
     List<Endereco> findAll();
 
-    List<Endereco> findById(Integer id);
+    Endereco findById(Integer id);
 
     EnderecoDto create(EnderecoDto end);
 

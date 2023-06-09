@@ -19,9 +19,9 @@ public class EnderecoFacadeImpl implements EnderecoFacade {
         return DozerMapper.parseListObjects(enderecoService.findAll(),EnderecoDto.class);
     }
 
-    public List<EnderecoDto> findById(Integer id){
+    public EnderecoDto findById(Integer id){
         var endereco  = enderecoService.findById(id);
-         return DozerMapper.parseListObjects(endereco,EnderecoDto.class);
+         return DozerMapper.parseObject(endereco,EnderecoDto.class);
     }
 
     public EnderecoDto create(EnderecoDto end){

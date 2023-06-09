@@ -6,6 +6,7 @@ import br.com.bruno.maida.teste.gerenciadorrestaurante.exceptions.RequiredObject
 import br.com.bruno.maida.teste.gerenciadorrestaurante.model.Endereco;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.repositories.EnderecoRepository;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.Mapper.EnderecoMapper;
+import br.com.bruno.maida.teste.gerenciadorrestaurante.utils.UtilServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,12 +19,12 @@ public class EnderecoServiceImpl implements EnderecoService {
     private EnderecoRepository enderecoRepository;
     @Override
     public List<Endereco> findAll() {
-        return enderecoRepository.findAll();
+        return enderecoRepository.findUsuarioEmail(UtilServices.captUsuarioLogado());
     }
 
     @Override
-    public List<Endereco> findById(Integer id) {
-        return enderecoRepository.findByClient(id);
+    public Endereco findById(Integer id) {
+        return enderecoRepository.findUsuarioEmailById(UtilServices.captUsuarioLogado(),id);
     }
 
     @Override

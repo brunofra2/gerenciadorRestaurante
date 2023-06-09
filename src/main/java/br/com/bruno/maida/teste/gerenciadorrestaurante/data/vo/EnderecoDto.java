@@ -26,7 +26,6 @@ public class EnderecoDto implements Serializable {
     private String numero;
     private String pais;
     private String rua;
-    @JsonIgnore
     @JsonProperty("cliente")
     private ClienteDto fkCliente;
 }

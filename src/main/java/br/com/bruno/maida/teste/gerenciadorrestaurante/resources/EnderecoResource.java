@@ -11,6 +11,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -65,8 +66,8 @@ public class EnderecoResource {
                     }),
             }
     )
-    public List<EnderecoDto> findAll(){
-        return enderecoFacade.findAll();
+    public ResponseEntity<List<EnderecoDto>> findAll(){
+        return ResponseEntity.ok().body(enderecoFacade.findAll());
     }
 
     @GetMapping("/{id}")
@@ -107,12 +108,12 @@ public class EnderecoResource {
                     }),
             }
     )
-    public List<EnderecoDto> findById(@PathVariable Integer id){
-        return enderecoFacade.findById(id);
+    public ResponseEntity<EnderecoDto> findById(@PathVariable Integer id){
+        return ResponseEntity.ok().body(enderecoFacade.findById(id));
     }
 
     @PostMapping("/create")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN',ROLE_USER)")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_USER')")
     @Operation(summary = "Salvar", description = "Realiza a adição de um novo endereço",
             tags = {"Endereco"},
             responses = {
@@ -149,8 +150,8 @@ public class EnderecoResource {
                     }),
             }
     )
-    public EnderecoDto create(@RequestBody EnderecoDto end){
-        return enderecoFacade.create(end);
+    public ResponseEntity<EnderecoDto> create(@RequestBody EnderecoDto end){
+        return ResponseEntity.ok().body(enderecoFacade.create(end));
     }
 
     @PutMapping("/update")
@@ -192,8 +193,8 @@ public class EnderecoResource {
                     }),
             }
     )
-    public EnderecoDto update(@RequestBody EnderecoDto end){
-        return enderecoFacade.update(end);
+    public ResponseEntity<EnderecoDto> update(@RequestBody EnderecoDto end){
+        return ResponseEntity.ok().body(enderecoFacade.update(end));
     }
 
     @DeleteMapping("/delete/{id}")
