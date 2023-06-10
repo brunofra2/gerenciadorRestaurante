@@ -52,7 +52,6 @@ public class PedidoServiceImpl implements PedidoService {
     @Override
     public PedidoDto create(PedidoDto ped) {
         criarPedido(ped,produtoRepository,clienteRepository);
-        LOGGER.info(ped.toString());
         var entity = PedidoMapper.convertDtoToModel(ped);
         var vo =  PedidoMapper.convertModelToDto(pedidoRepository.save(entity));
         salvarManytoMany(entity,produtoPedidoRepository);
