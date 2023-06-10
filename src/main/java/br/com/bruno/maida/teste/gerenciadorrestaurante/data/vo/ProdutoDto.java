@@ -3,6 +3,7 @@ package br.com.bruno.maida.teste.gerenciadorrestaurante.data.vo;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.data.vo.enuns.CategoriaDto;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.model.Produto;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,6 +24,8 @@ public class ProdutoDto implements Serializable {
     private String descricao;
     private String nome;
     private Double valor;
+    @JsonProperty("quantidade")
+    private Double qtd;
     private String imagem;
     private CategoriaDto categoria;
 }

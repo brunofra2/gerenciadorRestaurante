@@ -50,11 +50,9 @@ public class PedidoServiceImpl implements PedidoService {
     public List<Pedido> findAll() {
         var usuarioLogado = usuarioRepository.findUsuario(captUsuarioLogado());
         if(usuarioLogado.getTypeUser() == TipoUsuario.GESTOR){
-            return trazerprodutos(pedidoRepository.findAll()
-                    ,produtoPedidoRepository);
+            return pedidoRepository.findAll();
         }else{
-            return trazerprodutos(pedidoRepository.findUsuarioEmail(Utils.captUsuarioLogado())
-                    ,produtoPedidoRepository);
+            return pedidoRepository.findUsuarioEmail(Utils.captUsuarioLogado());
         }
 
 
@@ -78,8 +76,8 @@ public class PedidoServiceImpl implements PedidoService {
         criarPedido(ped,produtoRepository,clienteRepository);
         var entity = PedidoMapper.convertDtoToModel(ped);
         var vo =  PedidoMapper.convertModelToDto(pedidoRepository.save(entity));
-        salvarManytoMany(entity,produtoPedidoRepository);
-        return vo;
+        return salvarManytoMany(entity,produtoPedidoRepository,
+                ped,vo,produtoRepository,clienteRepository);
     }
 
 

@@ -19,6 +19,9 @@ public class ProdutoPedido implements Serializable {
     @Column(name = "id", nullable = false)
     private Long id;
 
+    @Column(name = "quantidade",nullable = false)
+    private Double quantidade;
+
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_produto", nullable = false)
