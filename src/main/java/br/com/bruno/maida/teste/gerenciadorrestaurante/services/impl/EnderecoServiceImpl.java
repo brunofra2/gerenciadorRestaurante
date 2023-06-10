@@ -1,22 +1,29 @@
 package br.com.bruno.maida.teste.gerenciadorrestaurante.services.impl;
 
 import br.com.bruno.maida.teste.gerenciadorrestaurante.data.vo.EnderecoDto;
+import br.com.bruno.maida.teste.gerenciadorrestaurante.repositories.ClienteRepository;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.services.EnderecoService;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.exceptions.RequiredObjectIsNullException;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.model.Endereco;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.repositories.EnderecoRepository;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.Mapper.EnderecoMapper;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.utils.Utils;
+import br.com.bruno.maida.teste.gerenciadorrestaurante.utils.UtilsEnderecoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
+import static br.com.bruno.maida.teste.gerenciadorrestaurante.utils.Utils.captUsuarioLogado;
 
 @Service
 public class EnderecoServiceImpl implements EnderecoService {
 
     @Autowired
     private EnderecoRepository enderecoRepository;
+
+    @Autowired
+    private ClienteRepository clienteRepository;
     @Override
     public List<Endereco> findAll() {
         return enderecoRepository.findUsuarioEmail(Utils.captUsuarioLogado());
@@ -29,7 +36,10 @@ public class EnderecoServiceImpl implements EnderecoService {
 
     @Override
     public EnderecoDto create(EnderecoDto end) {
-        if (end == null) throw new RequiredObjectIsNullException();
+
+        var usuarioLogado = clienteRepository.verifyClienteLogado(captUsuarioLogado());
+
+        UtilsEnderecoService.criarEndereco(end,usuarioLogado);
 
         var entity = EnderecoMapper.convertoDtoToModel(end);
         var vo =  EnderecoMapper.convertoModelToDto(enderecoRepository.save(entity));
@@ -39,6 +49,9 @@ public class EnderecoServiceImpl implements EnderecoService {
     @Override
     public EnderecoDto update(EnderecoDto end) {
         if (end == null) throw new RequiredObjectIsNullException();
+        var usuarioLogado = clienteRepository.verifyClienteLogado(captUsuarioLogado());
+
+        UtilsEnderecoService.criarEndereco(end,usuarioLogado);
 
         var entity = EnderecoMapper.convertoDtoToModel(end);
         var vo =  EnderecoMapper.convertoModelToDto(enderecoRepository.save(entity));

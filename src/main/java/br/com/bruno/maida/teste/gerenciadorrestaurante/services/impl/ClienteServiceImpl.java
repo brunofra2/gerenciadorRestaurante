@@ -34,16 +34,16 @@ public class ClienteServiceImpl implements ClienteService {
 
     @Override
     public ClienteDto create(ClienteDto cli) throws MyRunTimeException {
-        UtilsClienteService.verificaçõesdeCampos(usuarioRepository,cli,clienteRepository);
+        UtilsClienteService.verificaçõesdeCampos(usuarioRepository,cli,clienteRepository,null);
         var entity = ClienteMapper.convertDtoToModel(cli);
         var vo =  ClienteMapper.convertModelToDto(clienteRepository.save(entity));
         return vo;
     }
 
     @Override
-    public ClienteDto update(ClienteDto cli) {
-        if (cli == null) throw new RequiredObjectIsNullException();
+    public ClienteDto update(ClienteDto cli) throws MyRunTimeException{
 
+        UtilsClienteService.verificaçõesdeCamposUpdate(usuarioRepository,cli,clienteRepository);
         var entity = ClienteMapper.convertDtoToModel(cli);
         var vo =  ClienteMapper.convertModelToDto(clienteRepository.save(entity));
         return vo;

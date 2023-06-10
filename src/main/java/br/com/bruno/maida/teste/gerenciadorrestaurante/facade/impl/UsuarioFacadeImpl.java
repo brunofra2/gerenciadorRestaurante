@@ -3,6 +3,7 @@ package br.com.bruno.maida.teste.gerenciadorrestaurante.facade.impl;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.Mapper.DozerMapper;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.data.vo.LoginDto;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.data.vo.UsuarioDto;
+import br.com.bruno.maida.teste.gerenciadorrestaurante.exceptions.MyRunTimeException;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.facade.UsuarioFacade;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,7 @@ public class UsuarioFacadeImpl implements UsuarioFacade {
         return usuarioService.update(user);
     }
 
-    public void delete(Integer id){
+    public void delete(Integer id) throws MyRunTimeException {
         usuarioService.delete(id);
     }
 

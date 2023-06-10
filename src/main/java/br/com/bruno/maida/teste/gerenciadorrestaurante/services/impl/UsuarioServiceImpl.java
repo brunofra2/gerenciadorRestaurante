@@ -4,6 +4,7 @@ import br.com.bruno.maida.teste.gerenciadorrestaurante.data.vo.LoginDto;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.data.vo.UsuarioDto;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.data.vo.enuns.TipoUsuarioDto;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.exceptions.MyRunTimeException;
+import br.com.bruno.maida.teste.gerenciadorrestaurante.model.enuns.TipoUsuario;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.services.UsuarioService;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.exceptions.RequiredObjectIsNullException;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.model.Usuario;
@@ -61,10 +62,8 @@ public class UsuarioServiceImpl implements UsuarioService {
 
         if (user == null) throw new RequiredObjectIsNullException();
 
-        Usuario existUsuario = usuarioRepository.findUsuario(user.getEmail());
-        if(existUsuario != null)
-            throw  new MyRunTimeException("usuario já esta cadastrado");
 
+        user.setPassword(passwordEncoder().encode(user.getPassword()));
         return  UsuarioMapper.convertModelToDto(
                 usuarioRepository.save(
                         UsuarioMapper.convertDtoToModel(user)
@@ -73,8 +72,13 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public void delete(Integer id){
-        usuarioRepository.delete(usuarioRepository.findById(id).get());
+    public void delete(Integer id) throws MyRunTimeException {
+        var usuario = usuarioRepository.findById(id).get();
+        if(usuario.getTypeUser() == TipoUsuario.GESTOR){
+            throw new MyRunTimeException("este usuario não pode ser excluido, por ser um gestor");
+        }else{
+            usuarioRepository.delete(usuario);
+        }
     }
 
 }

@@ -12,7 +12,7 @@ public class UtilsClienteService {
 
     public static ClienteDto verificaçõesdeCampos(
             UsuarioRepository usuarioRepository, ClienteDto cli,
-            ClienteRepository clienteRepository) throws MyRunTimeException {
+            ClienteRepository clienteRepository,String acao) throws MyRunTimeException {
         var usuario = usuarioRepository.findUsuario(Utils.captUsuarioLogado());
         if(usuario.getTypeUser() == TipoUsuario.GESTOR){
             throw new MyRunTimeException("Este usuario não pode ser cliente");
@@ -22,8 +22,18 @@ public class UtilsClienteService {
 
         cli.setFkUsuario(new UsuarioDto().builder().id(usuario.getId()).build());
 
-        if(clienteRepository.verifyDuplicidade(cli.getFkUsuario().getId()) != null)
-            throw new MyRunTimeException("usuario já é um cliente");
+        if(acao == null){
+            if(clienteRepository.verifyDuplicidade(cli.getFkUsuario().getId()) != null)
+                throw new MyRunTimeException("usuario já é um cliente");
+        }
         return cli;
+    }
+
+    public static ClienteDto verificaçõesdeCamposUpdate(
+            UsuarioRepository usuarioRepository, ClienteDto cli,
+            ClienteRepository clienteRepository) throws MyRunTimeException {
+        var cliente = clienteRepository.verifyClienteLogado(Utils.captUsuarioLogado());
+        cli.setId(cliente.getId());
+        return verificaçõesdeCampos(usuarioRepository,cli,clienteRepository,"update");
     }
 }

@@ -1,5 +1,6 @@
 package br.com.bruno.maida.teste.gerenciadorrestaurante.repositories;
 
+import br.com.bruno.maida.teste.gerenciadorrestaurante.model.Cliente;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.model.Endereco;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -25,4 +26,9 @@ public interface EnderecoRepository extends JpaRepository<Endereco,Integer> {
             "AND usuario.email = :email\n" +
             ") AND endereco.endereco_id = :id",nativeQuery = true)
     Endereco findUsuarioEmailById(@Param("email") String email, Integer id);
+
+    @Transactional
+    @Query(value = "SELECT * FROM cliente WHERE cliente.fk_usuario IN (\n" +
+            "SELECT usuario.usuario_id FROM usuario WHERE usuario.email = :email)",nativeQuery = true)
+    Cliente verifyClienteLogado(@Param("email") String email);
 }

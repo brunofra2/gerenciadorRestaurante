@@ -14,7 +14,7 @@ public interface ClienteService {
 
     ClienteDto create(ClienteDto cli) throws MyRunTimeException;
 
-    ClienteDto update(ClienteDto cli);
+    ClienteDto update(ClienteDto cli) throws MyRunTimeException;
 
     void delete(Integer id);
 }

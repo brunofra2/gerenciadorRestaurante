@@ -152,7 +152,7 @@ public class  ClienteResource  {
     }
 
     @PutMapping("/update")
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_USER')")
+    @PreAuthorize("hasAuthority('ROLE_USER')")
     @Operation(summary = "Alterar", description = "Altera as informações do cliente selecionado",
             tags = {"Cliente"},
             responses = {
@@ -189,7 +189,7 @@ public class  ClienteResource  {
                     }),
             }
     )
-    public ResponseEntity<ClienteDto> update(@RequestBody ClienteDto cli){
+    public ResponseEntity<ClienteDto> update(@RequestBody ClienteDto cli) throws MyRunTimeException {
         return ResponseEntity.ok().body(clienteFacade.update(cli));
     }
 

@@ -8,22 +8,26 @@ CREATE USER 'maida’@’%’ IDENTIFIED BY ‘maida’;
 GRANT ALL PRIVILEGES ON maida . * TO ‘maida’@’%’;
 FLUSH PRIVILEGES;
 Foi utilizado o spring security e jwt para garantir a segurança da API: ela contém dois endpoints livres de autenticação são eles:
-Restaurante/user/create : para criar os usuários para acesso. Podendo ser do tipo CLIENTE ou GESTOR.
+**Restaurante/user/create :** para criar os usuários para acesso. Podendo ser do tipo CLIENTE ou GESTOR.
 Obedecendo as seguintes regras:
 - Poderá ser cadastrado apenas um usuário GESTOR na aplicação.
 - os usuários do tipo cliente terão apenas um usuário por email.
-restaurante/user/login : para obter o token de acesso para as demais funcionalidades 
+- Para a perfeita execução do modulo de pedidos, deve estar devidamente cadastrado o usuario gestor e os produtos que serão vendidos.
+
+**restaurante/user/login :** para obter o token de acesso para as demais funcionalidades 
 
 O usuário cliente terão as seguintes funcionalidades disponíveis.
-- adição de informações pessoais. Para se tornar um cliente.
-- gerenciar endereços – podendo adicionar mais de um endereço. Terá as seguintes ações habilitadas. Incluir, alterar, excluir, pesquisar e carregar
-- criar pedidos – podendo selecionar os produtos desejados. E assim abrir o pedido para o estabelecimento. Se o pedido estiver em espera o cliente pode cancelar. Poderá carregar os pedidos relacionados ao seu usuário, assim podendo acompanhar o andamento do Mesmo
+- **adição de informações pessoais -** Para se tornar um cliente.
+- **gerenciar endereços –** podendo adicionar mais de um endereço. Terá as seguintes ações habilitadas. Incluir, alterar, excluir, pesquisar e carregar
+- **criar pedidos –** podendo selecionar os produtos desejados. E assim abrir o pedido para o estabelecimento. Se o pedido estiver em espera o cliente pode cancelar. Poderá carregar os pedidos relacionados ao seu usuário, assim podendo acompanhar o andamento do Mesmo
+
 Já o usuário do tipo GESTOR terá as seguintes funcionalidades:
-- Gerenciar produtos disponíveis, podendo realizar as seguintes ações: incluir, alterar, excluir, pesquisar e carregar.
-- Gerenciar os pedidos podendo atender ou cancelar o pedido. Podendo realizar as seguintes ações: alterar status do pedido, pesquisar, carregar e excluir
-- gerenciar os clientes podendo pesquisar, alterar, carregar e excluir se assim desejar. Assim, também acontecera com os usuários
+- **Gerenciar produtos -** disponíveis, podendo realizar as seguintes ações: incluir, alterar, excluir, pesquisar e carregar.
+- **Gerenciar os pedidos -** podendo atender ou cancelar o pedido. Podendo realizar as seguintes ações: alterar status do pedido, pesquisar, carregar e excluir
+- **gerenciar os clientes -** podendo pesquisar, alterar, carregar e excluir se assim desejar. Assim, também acontecera com os usuários
+
 Foi criado uma documentação swagger com o apidoc 
-Que fica no link link/swagger-ui.html ou link/swagger-ui/Index.html
+Que fica no [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
 
 As credenciais dos usuários são geradas através do jwt. Fornecendo um token de acesso. Para acesso das funcionalidades do sistema. Com tempo de expiração de 10 minutos.
 Para acessar deve fornecer o email cadastrado e senha de acesso.

@@ -4,6 +4,7 @@ import br.com.bruno.maida.teste.gerenciadorrestaurante.config.security.MyUserDet
 import br.com.bruno.maida.teste.gerenciadorrestaurante.data.vo.LoginDto;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.data.vo.UsuarioDto;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.exceptions.ExceptionResponse;
+import br.com.bruno.maida.teste.gerenciadorrestaurante.exceptions.MyRunTimeException;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.facade.UsuarioFacade;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.model.Usuario;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.services.impl.TokenService;
@@ -259,7 +260,7 @@ public class UsuarioResource {
                     }),
             }
     )
-    public void delete(@PathVariable Integer id){
+    public void delete(@PathVariable Integer id) throws MyRunTimeException {
         usuarioFacadeImpl.delete(id);
     }
 }

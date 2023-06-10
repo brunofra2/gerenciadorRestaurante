@@ -29,7 +29,7 @@ public class ClienteFacadeImpl implements ClienteFacade {
         return clienteService.create(cli);
     }
 
-    public ClienteDto update(ClienteDto cli){
+    public ClienteDto update(ClienteDto cli) throws MyRunTimeException {
         return clienteService.update(cli);
     }
 

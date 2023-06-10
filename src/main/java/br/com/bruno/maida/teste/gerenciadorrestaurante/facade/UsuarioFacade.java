@@ -2,6 +2,7 @@ package br.com.bruno.maida.teste.gerenciadorrestaurante.facade;
 
 import br.com.bruno.maida.teste.gerenciadorrestaurante.data.vo.LoginDto;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.data.vo.UsuarioDto;
+import br.com.bruno.maida.teste.gerenciadorrestaurante.exceptions.MyRunTimeException;
 
 public interface UsuarioFacade {
 
@@ -13,5 +14,5 @@ public interface UsuarioFacade {
 
     UsuarioDto update(UsuarioDto user) throws Exception;
 
-    void delete(Integer id);
+    void delete(Integer id) throws MyRunTimeException;
 }
