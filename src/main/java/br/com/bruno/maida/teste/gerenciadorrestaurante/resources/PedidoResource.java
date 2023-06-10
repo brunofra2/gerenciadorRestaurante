@@ -107,12 +107,12 @@ public class PedidoResource {
                     }),
             }
     )
-    public ResponseEntity< PedidoDto> findById(@PathVariable Integer id){
+    public ResponseEntity<PedidoDto> findById(@PathVariable Integer id){
         return ResponseEntity.ok().body(pedidoFacade.findById(id));
     }
 
     @PostMapping("/create")
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_USER')")
+    @PreAuthorize("hasAuthority('ROLE_USER')")
     @Operation(summary = "Salvar", description = "Realiza a adição de um novo pedido",
             tags = {"Pedido"},
             responses = {

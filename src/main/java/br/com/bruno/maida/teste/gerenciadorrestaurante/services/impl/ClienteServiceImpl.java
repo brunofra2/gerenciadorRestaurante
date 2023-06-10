@@ -1,11 +1,14 @@
 package br.com.bruno.maida.teste.gerenciadorrestaurante.services.impl;
 
 import br.com.bruno.maida.teste.gerenciadorrestaurante.data.vo.ClienteDto;
+import br.com.bruno.maida.teste.gerenciadorrestaurante.exceptions.MyRunTimeException;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.exceptions.RequiredObjectIsNullException;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.model.Cliente;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.repositories.ClienteRepository;
+import br.com.bruno.maida.teste.gerenciadorrestaurante.repositories.UsuarioRepository;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.services.ClienteService;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.Mapper.ClienteMapper;
+import br.com.bruno.maida.teste.gerenciadorrestaurante.utils.UtilsClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +19,8 @@ public class ClienteServiceImpl implements ClienteService {
 
     @Autowired
     private ClienteRepository clienteRepository;
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
     @Override
     public List<Cliente> findAll() {
@@ -28,10 +33,8 @@ public class ClienteServiceImpl implements ClienteService {
     }
 
     @Override
-    public ClienteDto create(ClienteDto cli) {
-
-        if (cli == null) throw new RequiredObjectIsNullException();
-
+    public ClienteDto create(ClienteDto cli) throws MyRunTimeException {
+        UtilsClienteService.verificaçõesdeCampos(usuarioRepository,cli,clienteRepository);
         var entity = ClienteMapper.convertDtoToModel(cli);
         var vo =  ClienteMapper.convertModelToDto(clienteRepository.save(entity));
         return vo;

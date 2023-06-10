@@ -2,6 +2,7 @@ package br.com.bruno.maida.teste.gerenciadorrestaurante.facade.impl;
 
 import br.com.bruno.maida.teste.gerenciadorrestaurante.Mapper.DozerMapper;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.data.vo.ClienteDto;
+import br.com.bruno.maida.teste.gerenciadorrestaurante.exceptions.MyRunTimeException;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.facade.ClienteFacade;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.services.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class ClienteFacadeImpl implements ClienteFacade {
         return  clienteDto;
     }
 
-    public ClienteDto create(ClienteDto cli){
+    public ClienteDto create(ClienteDto cli) throws MyRunTimeException {
         return clienteService.create(cli);
     }
 

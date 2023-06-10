@@ -2,6 +2,7 @@ package br.com.bruno.maida.teste.gerenciadorrestaurante.resources;
 
 import br.com.bruno.maida.teste.gerenciadorrestaurante.data.vo.ClienteDto;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.exceptions.ExceptionResponse;
+import br.com.bruno.maida.teste.gerenciadorrestaurante.exceptions.MyRunTimeException;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.facade.ClienteFacade;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -109,7 +110,7 @@ public class  ClienteResource  {
     }
 
     @PostMapping("/create")
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_USER')")
+    @PreAuthorize("hasAuthority('ROLE_USER')")
     @Operation(summary = "salvar", description = "Adiciona as informações do cliente",
             tags = {"Cliente"},
             responses = {
@@ -146,7 +147,7 @@ public class  ClienteResource  {
                     }),
             }
     )
-    public ResponseEntity<ClienteDto> create(@RequestBody ClienteDto cli){
+    public ResponseEntity<ClienteDto> create(@RequestBody ClienteDto cli) throws MyRunTimeException {
         return ResponseEntity.ok().body(clienteFacade.create(cli));
     }
 

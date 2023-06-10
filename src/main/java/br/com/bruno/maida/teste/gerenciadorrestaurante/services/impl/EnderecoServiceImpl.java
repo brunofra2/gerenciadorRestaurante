@@ -6,7 +6,7 @@ import br.com.bruno.maida.teste.gerenciadorrestaurante.exceptions.RequiredObject
 import br.com.bruno.maida.teste.gerenciadorrestaurante.model.Endereco;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.repositories.EnderecoRepository;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.Mapper.EnderecoMapper;
-import br.com.bruno.maida.teste.gerenciadorrestaurante.utils.UtilServices;
+import br.com.bruno.maida.teste.gerenciadorrestaurante.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,12 +19,12 @@ public class EnderecoServiceImpl implements EnderecoService {
     private EnderecoRepository enderecoRepository;
     @Override
     public List<Endereco> findAll() {
-        return enderecoRepository.findUsuarioEmail(UtilServices.captUsuarioLogado());
+        return enderecoRepository.findUsuarioEmail(Utils.captUsuarioLogado());
     }
 
     @Override
     public Endereco findById(Integer id) {
-        return enderecoRepository.findUsuarioEmailById(UtilServices.captUsuarioLogado(),id);
+        return enderecoRepository.findUsuarioEmailById(Utils.captUsuarioLogado(),id);
     }
 
     @Override
@@ -46,8 +46,13 @@ public class EnderecoServiceImpl implements EnderecoService {
     }
 
     @Override
-    public void delete(Integer id) {
+    public String delete(Integer id) {
+        if(Utils.captUsuarioLogado().equals(enderecoRepository.findById(id).get())){
+            enderecoRepository.delete(enderecoRepository.findById(id).get());
+            return "endereço removido com sucesso";
+        }else{
+            return "ação não autorizada";
+        }
 
-        enderecoRepository.delete(enderecoRepository.findById(id).get());
     }
 }

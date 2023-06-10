@@ -32,7 +32,7 @@ public class EnderecoFacadeImpl implements EnderecoFacade {
         return enderecoService.update(end);
     }
 
-    public void delete(Integer id){
-        enderecoService.delete(id);
+    public String delete(Integer id){
+       return enderecoService.delete(id);
     }
 }

@@ -14,5 +14,5 @@ public interface EnderecoFacade {
 
     EnderecoDto update(EnderecoDto end);
 
-    void delete(Integer id);
+    String delete(Integer id);
 }

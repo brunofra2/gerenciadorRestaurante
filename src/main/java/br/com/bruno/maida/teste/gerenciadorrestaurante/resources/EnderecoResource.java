@@ -71,7 +71,7 @@ public class EnderecoResource {
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN','ROLE_USER')")
+    @PreAuthorize("hasAuthority('ROLE_USER')")
     @Operation(summary = "Busca por endereço", description = "Realiza a busca dos endereços através do id do cliente",
             tags = {"Endereco"},
             responses = {
@@ -113,7 +113,7 @@ public class EnderecoResource {
     }
 
     @PostMapping("/create")
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_USER')")
+    @PreAuthorize("hasAuthority('ROLE_USER')")
     @Operation(summary = "Salvar", description = "Realiza a adição de um novo endereço",
             tags = {"Endereco"},
             responses = {
@@ -156,7 +156,7 @@ public class EnderecoResource {
 
     @PutMapping("/update")
 
-    @PreAuthorize("hasAuthority('ROLE_ADMIN',ROLE_USER)")
+    @PreAuthorize("hasAuthority(ROLE_USER)")
     @Operation(summary = "Alterar", description = "Realiza a modificação de um endereço",
             tags = {"Endereco"},
             responses = {
@@ -198,7 +198,7 @@ public class EnderecoResource {
     }
 
     @DeleteMapping("/delete/{id}")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN',ROLE_USER)")
+    @PreAuthorize("hasAuthority(ROLE_USER)")
     @Operation(summary = "Remover", description = "Deleta as informações do endereço selecionado",
             tags = {"Endereco"},
             responses = {
@@ -230,7 +230,8 @@ public class EnderecoResource {
                     }),
             }
     )
-    public void delete(@PathVariable Integer id){
-        enderecoFacade.delete(id);
+    public ResponseEntity<String> delete(@PathVariable Integer id){
+
+        return  ResponseEntity.ok().body(enderecoFacade.delete(id));
     }
 }

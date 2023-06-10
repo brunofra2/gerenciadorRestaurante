@@ -86,13 +86,13 @@ public class UsuarioResource {
     )
     public String login(@RequestBody LoginDto login) {
 
-            Authentication authenticate = this.authenticationManager
-                    .authenticate(new UsernamePasswordAuthenticationToken(login.email(),
-                            login.senha()));
+        Authentication authenticate = this.authenticationManager
+                .authenticate(new UsernamePasswordAuthenticationToken(login.email(),
+                        login.senha()));
 
-            var usuario = (Usuario) authenticate.getPrincipal();
+        var usuario = (Usuario) authenticate.getPrincipal();
 
-            return tokenService.gerarToken(usuario);
+        return tokenService.gerarToken(usuario);
 
 
 
@@ -141,6 +141,7 @@ public class UsuarioResource {
 
 
     @PostMapping("/create")
+    @PreAuthorize("permitAll()")
     @Operation(summary = "salvar", description = "cria um novo usuario obedecendo as regras imposta pela api," +
             "- Podendo um unico usuario gestor ser cadastrado." +
             "- os demais é para os clientes do estabelecimento",

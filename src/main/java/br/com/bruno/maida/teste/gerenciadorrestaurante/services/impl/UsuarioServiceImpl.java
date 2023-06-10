@@ -2,6 +2,7 @@ package br.com.bruno.maida.teste.gerenciadorrestaurante.services.impl;
 
 import br.com.bruno.maida.teste.gerenciadorrestaurante.data.vo.LoginDto;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.data.vo.UsuarioDto;
+import br.com.bruno.maida.teste.gerenciadorrestaurante.data.vo.enuns.TipoUsuarioDto;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.exceptions.MyRunTimeException;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.services.UsuarioService;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.exceptions.RequiredObjectIsNullException;
@@ -17,6 +18,8 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
+
+
 
     private BCryptPasswordEncoder passwordEncoder(){
         return  new BCryptPasswordEncoder();
@@ -35,14 +38,20 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public UsuarioDto create(UsuarioDto user) throws MyRunTimeException {
-            if (user == null) throw new RequiredObjectIsNullException();
-            Usuario existUsuario = usuarioRepository.findUsuario(user.getEmail());
-                    if(existUsuario != null){
-                        throw  new MyRunTimeException("usuario já esta cadastrado");
-                    }
-                    user.setPassword(passwordEncoder().encode(user.getPassword()));
-            var entity = UsuarioMapper.convertDtoToModel(user);
-            return   UsuarioMapper.convertModelToDto(usuarioRepository.save(entity));
+        if (user == null) throw new RequiredObjectIsNullException();
+        Usuario existUsuario = usuarioRepository.findUsuario(user.getEmail());
+        if(existUsuario != null){
+            throw  new MyRunTimeException("usuario já esta cadastrado");
+        }
+        if (user.getTypeUser() == TipoUsuarioDto.GESTOR){
+            var verfifyGestor = usuarioRepository.findCount();
+            if(verfifyGestor >= 1){
+                throw  new MyRunTimeException("Já existe um Gestor para este estabelecimento");
+            }
+        }
+        user.setPassword(passwordEncoder().encode(user.getPassword()));
+        var entity = UsuarioMapper.convertDtoToModel(user);
+        return   UsuarioMapper.convertModelToDto(usuarioRepository.save(entity));
 
 
     }
