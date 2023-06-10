@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity(name = "Cliente")
 @Table(name = "cliente")
@@ -30,7 +31,6 @@ public class Cliente implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "fk_usuario", nullable = false)
     private Usuario fkUsuario;
-
     public Integer getId() {
         return id;
     }

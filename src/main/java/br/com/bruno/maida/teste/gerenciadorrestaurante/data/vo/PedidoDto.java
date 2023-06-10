@@ -1,6 +1,5 @@
 package br.com.bruno.maida.teste.gerenciadorrestaurante.data.vo;
 
-import br.com.bruno.maida.teste.gerenciadorrestaurante.model.Pedido;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;

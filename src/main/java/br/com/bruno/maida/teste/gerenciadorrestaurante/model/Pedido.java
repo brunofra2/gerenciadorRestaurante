@@ -27,8 +27,8 @@ public class Pedido implements Serializable {
     @Column(name = "total")
     private Double total;
 
-    @ManyToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name = "fk_cliente")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "fk_cliente", nullable = false)
     private Cliente fkCliente;
 
     @ManyToMany(mappedBy = "pedidoList",fetch = FetchType.LAZY)

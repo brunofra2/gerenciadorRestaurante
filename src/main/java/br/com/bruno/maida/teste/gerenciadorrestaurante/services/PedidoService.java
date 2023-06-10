@@ -1,7 +1,7 @@
 package br.com.bruno.maida.teste.gerenciadorrestaurante.services;
 
-import br.com.bruno.maida.teste.gerenciadorrestaurante.model.Pedido;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.data.vo.PedidoDto;
+import br.com.bruno.maida.teste.gerenciadorrestaurante.model.Pedido;
 
 import java.util.List;
 

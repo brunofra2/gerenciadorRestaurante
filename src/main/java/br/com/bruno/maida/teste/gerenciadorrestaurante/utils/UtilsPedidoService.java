@@ -1,7 +1,9 @@
 package br.com.bruno.maida.teste.gerenciadorrestaurante.utils;
 
+import br.com.bruno.maida.teste.gerenciadorrestaurante.data.vo.ClienteDto;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.data.vo.PedidoDto;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.data.vo.ProdutoDto;
+import br.com.bruno.maida.teste.gerenciadorrestaurante.data.vo.UsuarioDto;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.exceptions.RequiredObjectIsNullException;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.model.Pedido;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.model.Produto;
@@ -80,14 +82,14 @@ public class UtilsPedidoService {
         }
         var usuarioLogado = clienteRepository.verifyClienteLogado(captUsuarioLogado());
 
-//        ped.setStatus("cadastrado");
-//        ped.setTotal(vlrTotal);
-//        ped.setFkCliente(new ClienteDto().builder()
-//                .id(usuarioLogado.getId())
-//                .fkUsuario(
-//                        new UsuarioDto().builder()
-//                                .id(usuarioLogado.getFkUsuario().getId()).build()
-//                ).build());
+        ped.setStatus("cadastrado");
+        ped.setTotal(vlrTotal);
+        ped.setFkCliente(new ClienteDto().builder()
+                .id(usuarioLogado.getId())
+                .fkUsuario(
+                        new UsuarioDto().builder()
+                                .id(usuarioLogado.getFkUsuario().getId()).build()
+                ).build());
         return ped;
     }
 }
