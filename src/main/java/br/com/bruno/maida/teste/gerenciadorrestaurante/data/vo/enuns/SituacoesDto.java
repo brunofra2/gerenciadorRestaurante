@@ -2,5 +2,8 @@ package br.com.bruno.maida.teste.gerenciadorrestaurante.data.vo.enuns;
 
 public enum SituacoesDto {
 
-    CADASTRADO,PREPARANDO,FINALIZADO,CANCELADO
+    CADASTRADO,
+    PREPARANDO,
+    CANCELADO,
+    FINALIZADO
 }

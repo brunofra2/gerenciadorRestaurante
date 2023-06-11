@@ -70,6 +70,50 @@ public class PedidoResource {
         return pedidoFacade.findAll();
     }
 
+    @GetMapping("/finalizados")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_USER')")
+    @Operation(summary = "Busca os pedidos finalizado", description = "realiza a busca pelos pedidos ja finalizados." +
+            "- se o usuario for o GESTOR trara todos os pedidos cadastrados." +
+            "- se o usuario for um cliente trara apenas os pedidos que contenha vinculo, com ele.",
+            tags = {"Pedido"},
+            responses = {
+                    @ApiResponse(description = "Success", responseCode = "200",
+                            content = {
+                                    @Content(
+                                            mediaType = "application/json",
+                                            array = @ArraySchema(schema = @Schema(implementation = PedidoDto.class))
+                                    )
+                            }),
+                    @ApiResponse(description = "Bad Request", responseCode = "400", content = {
+                            @Content(
+                                    mediaType = "application/json",
+                                    array = @ArraySchema(schema = @Schema(implementation = ExceptionResponse.class))
+                            )
+                    }),
+                    @ApiResponse(description = "Unauthorized", responseCode = "401", content = {
+                            @Content(
+                                    mediaType = "application/json",
+                                    array = @ArraySchema(schema = @Schema(implementation = ExceptionResponse.class))
+                            )
+                    }),
+                    @ApiResponse(description = "Not Found", responseCode = "404", content = {
+                            @Content(
+                                    mediaType = "application/json",
+                                    array = @ArraySchema(schema = @Schema(implementation = ExceptionResponse.class))
+                            )
+                    }),
+                    @ApiResponse(description = "Internal Error", responseCode = "500", content = {
+                            @Content(
+                                    mediaType = "application/json",
+                                    array = @ArraySchema(schema = @Schema(implementation = ExceptionResponse.class))
+                            )
+                    }),
+            }
+    )
+    public List<PedidoDto> findfinally(){
+        return pedidoFacade.findfinally();
+    }
+
     @GetMapping("/{id}")
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_USER')")
     @Operation(summary = "Busca por pedido", description = "Realiza a busca de um determinado pedido, por seu id",
@@ -108,7 +152,7 @@ public class PedidoResource {
                     }),
             }
     )
-    public ResponseEntity<PedidoDto> findById(@PathVariable Integer id){
+    public ResponseEntity<PedidoDto> findById(@PathVariable Integer id) throws MyRunTimeException {
         return ResponseEntity.ok().body(pedidoFacade.findById(id));
     }
 

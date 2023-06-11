@@ -9,8 +9,8 @@ import java.util.List;
 public interface PedidoFacade {
 
     List<PedidoDto> findAll();
-
-    PedidoDto findById(Integer id);
+    List<PedidoDto> findfinally();
+    PedidoDto findById(Integer id) throws MyRunTimeException;
 
     PedidoDto create(PedidoDto ped);
 

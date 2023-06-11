@@ -59,17 +59,32 @@ public class PedidoServiceImpl implements PedidoService {
 
     }
 
+    public List<Pedido> findFinally() {
+        var usuarioLogado = usuarioRepository.findUsuario(captUsuarioLogado());
+        if(usuarioLogado.getTypeUser() == TipoUsuario.GESTOR){
+            return pedidoRepository.findAllfinaly();
+        }else{
+            return pedidoRepository.findfinaly(Utils.captUsuarioLogado());
+        }
+
+
+    }
+
 
     @Override
-    public Pedido findById(Integer id) {
+    public Pedido findById(Integer id) throws MyRunTimeException {
         var usuarioLogado = usuarioRepository.findUsuario(captUsuarioLogado());
         if(usuarioLogado.getTypeUser() == TipoUsuario.GESTOR){
             return pedidoRepository.findById(id).get();
         }else{
-            return pedidoRepository.findUsuarioEmailByid(Utils.captUsuarioLogado(),id);
-
+            var pedido = pedidoRepository.findUsuarioEmailByid(Utils.captUsuarioLogado(),id);
+            if(pedido == null){
+                throw  new MyRunTimeException("você não tem permissão para acessar este pedido");
+            }else{
+                return pedido;
+            }
         }
-        }
+    }
 
     @Override
     public PedidoDto create(PedidoDto ped) {

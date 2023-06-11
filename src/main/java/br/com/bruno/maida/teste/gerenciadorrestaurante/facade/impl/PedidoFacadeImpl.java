@@ -30,7 +30,18 @@ public class PedidoFacadeImpl implements PedidoFacade {
         return lista;
     }
 
-    public PedidoDto findById(Integer id){
+    @Override
+    public List<PedidoDto> findfinally() {
+        var pedidolist  = pedidoService.findFinally();
+        List<PedidoDto> lista = new ArrayList<>();
+        for (Pedido ped: pedidolist
+        ) {
+            lista.add(PedidoMapper.convertModelToDto(ped,"consulta"));
+        }
+        return lista;
+    }
+
+    public PedidoDto findById(Integer id) throws MyRunTimeException {
         var pedido  = pedidoService.findById(id);
         var pedidoDto = PedidoMapper.convertModelToDto(pedido,"consulta");
         return  pedidoDto;

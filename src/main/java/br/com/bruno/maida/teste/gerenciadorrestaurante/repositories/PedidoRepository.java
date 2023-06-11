@@ -21,9 +21,22 @@ public interface PedidoRepository extends JpaRepository<Pedido,Integer> {
 
     @Transactional
     @Query(value = "SELECT * FROM pedido WHERE pedido.fk_cliente IN(\n" +
+            "            SELECT cliente.cliente_id FROM cliente,usuario WHERE cliente.fk_usuario = usuario.usuario_id \n" +
+            "            AND usuario.email = :email\n" +
+            "            ) AND pedido.`status` = 3",nativeQuery = true)
+    List<Pedido> findfinaly(@Param("email") String email);
+
+    @Transactional
+    @Query(value = "SELECT * FROM pedido WHERE pedido.`status` = 3",nativeQuery = true)
+    List<Pedido> findAllfinaly();
+
+    @Transactional
+    @Query(value = "SELECT * FROM pedido WHERE pedido.fk_cliente IN(\n" +
             "SELECT cliente.cliente_id FROM cliente,usuario WHERE cliente.fk_usuario = usuario.usuario_id \n" +
             "AND usuario.email = :email \n" +
             ") AND pedido.pedido_id = :id",nativeQuery = true)
     Pedido findUsuarioEmailByid(@Param("email") String email,@Param("id") Integer id);
+
+
 
 }

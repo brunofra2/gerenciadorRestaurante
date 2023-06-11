@@ -10,7 +10,9 @@ public interface PedidoService {
 
     List<Pedido> findAll();
 
-    Pedido findById(Integer id);
+    public List<Pedido> findFinally();
+
+    Pedido findById(Integer id) throws MyRunTimeException;
 
     PedidoDto create(PedidoDto ped);
 
