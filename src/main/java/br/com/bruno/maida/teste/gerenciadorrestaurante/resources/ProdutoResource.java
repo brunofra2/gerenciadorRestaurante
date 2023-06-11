@@ -65,8 +65,10 @@ public class ProdutoResource {
                     }),
             }
     )
-    public ResponseEntity<List<ProdutoDto>> findall(){
-        return ResponseEntity.ok().body(produtoFacade.findall());
+    public ResponseEntity<List<ProdutoDto>> findall(
+            @RequestParam(name = "page", required = false,defaultValue = "1") Integer page,
+            @RequestParam(name = "page-size", required = false,defaultValue = "25") Integer pageSize){
+        return ResponseEntity.ok().body(produtoFacade.findall(page,pageSize));
     }
 
     @GetMapping("by/{id}")
@@ -195,40 +197,4 @@ public class ProdutoResource {
         return ResponseEntity.ok().body(produtoFacade.update(pag));
     }
 
-    @DeleteMapping("/delete/{id}")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    @Operation(summary = "Remover", description = "Realiza a remoção de produtos do cardapio ",
-            tags = {"Produto"},
-            responses = {
-                    @ApiResponse(description = "Success", responseCode = "200",
-                            content = @Content),
-                    @ApiResponse(description = "Bad Request", responseCode = "400", content = {
-                            @Content(
-                                    mediaType = "application/json",
-                                    array = @ArraySchema(schema = @Schema(implementation = ExceptionResponse.class))
-                            )
-                    }),
-                    @ApiResponse(description = "Unauthorized", responseCode = "401", content = {
-                            @Content(
-                                    mediaType = "application/json",
-                                    array = @ArraySchema(schema = @Schema(implementation = ExceptionResponse.class))
-                            )
-                    }),
-                    @ApiResponse(description = "Not Found", responseCode = "404", content = {
-                            @Content(
-                                    mediaType = "application/json",
-                                    array = @ArraySchema(schema = @Schema(implementation = ExceptionResponse.class))
-                            )
-                    }),
-                    @ApiResponse(description = "Internal Error", responseCode = "500", content = {
-                            @Content(
-                                    mediaType = "application/json",
-                                    array = @ArraySchema(schema = @Schema(implementation = ExceptionResponse.class))
-                            )
-                    }),
-            }
-    )
-    public void delete(@PathVariable Integer id){
-        produtoFacade.delete(id);
-    }
 }

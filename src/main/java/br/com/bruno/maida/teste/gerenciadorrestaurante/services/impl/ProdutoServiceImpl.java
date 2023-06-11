@@ -8,6 +8,7 @@ import br.com.bruno.maida.teste.gerenciadorrestaurante.model.Produto;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.repositories.ProdutoRepository;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.services.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,8 +19,9 @@ public class ProdutoServiceImpl implements ProdutoService {
     @Autowired
     private ProdutoRepository produtoRepository;
     @Override
-    public List<Produto> findall() {
-        return produtoRepository.findAll();
+    public List<Produto> findall(Integer page,Integer pageSize) {
+        PageRequest pageRequest = PageRequest.of(page -1, pageSize);
+        return produtoRepository.buscarTodos(pageRequest);
     }
 
     @Override
@@ -43,8 +45,4 @@ public class ProdutoServiceImpl implements ProdutoService {
         return vo;
     }
 
-    @Override
-    public void delete(Integer id) {
-        produtoRepository.delete(produtoRepository.findById(id).get());
-    }
 }

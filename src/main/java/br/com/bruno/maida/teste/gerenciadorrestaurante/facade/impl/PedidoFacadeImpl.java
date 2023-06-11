@@ -19,6 +19,7 @@ public class PedidoFacadeImpl implements PedidoFacade {
     @Autowired
     private PedidoService pedidoService;
 
+    @Override
     public List<PedidoDto> findAll(Integer page, Integer pageSize){
 
         var pedidolist  = pedidoService.findAll(page,pageSize);
@@ -41,21 +42,21 @@ public class PedidoFacadeImpl implements PedidoFacade {
         return lista;
     }
 
+    @Override
     public PedidoDto findById(Integer id) throws MyRunTimeException {
         var pedido  = pedidoService.findById(id);
         var pedidoDto = PedidoMapper.convertModelToDto(pedido,"consulta");
         return  pedidoDto;
     }
 
+    @Override
     public PedidoDto create(PedidoDto ped){
         return pedidoService.create(ped);
     }
 
+    @Override
     public PedidoDto update(PedidoDto ped) throws MyRunTimeException {
         return pedidoService.update(ped);
     }
 
-    public void delete(Integer id){
-        pedidoService.delete(id);
-    }
 }

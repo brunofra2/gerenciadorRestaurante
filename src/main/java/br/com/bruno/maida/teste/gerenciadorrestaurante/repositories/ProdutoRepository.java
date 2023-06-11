@@ -1,6 +1,8 @@
 package br.com.bruno.maida.teste.gerenciadorrestaurante.repositories;
 
+import br.com.bruno.maida.teste.gerenciadorrestaurante.model.Cliente;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.model.Produto;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -18,5 +20,9 @@ public interface ProdutoRepository extends JpaRepository<Produto,Integer> {
             "            FROM produto_pedido \n" +
             "            WHERE produto_pedido.id_pedido = 10)",nativeQuery = true)
     List<Produto> findByPedido(@Param("id") Integer id);
+
+    @Transactional(readOnly = true)
+    @Query(value = "SELECT * FROM produto",nativeQuery = true)
+    List<Produto> buscarTodos(Pageable pageable);
 
 }

@@ -229,40 +229,4 @@ public class UsuarioResource {
         return ResponseEntity.ok().body(usuarioFacadeImpl.update(user));
     }
 
-    @DeleteMapping("/delete/{id}")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    @Operation(summary = "delete", description = "Remove usuarios através de seu id",
-            tags = {"Usuario"},
-            responses = {
-                    @ApiResponse(description = "Success", responseCode = "200",
-                            content = @Content),
-                    @ApiResponse(description = "Bad Request", responseCode = "400", content = {
-                            @Content(
-                                    mediaType = "application/json",
-                                    array = @ArraySchema(schema = @Schema(implementation = ExceptionResponse.class))
-                            )
-                    }),
-                    @ApiResponse(description = "Unauthorized", responseCode = "401", content = {
-                            @Content(
-                                    mediaType = "application/json",
-                                    array = @ArraySchema(schema = @Schema(implementation = ExceptionResponse.class))
-                            )
-                    }),
-                    @ApiResponse(description = "Not Found", responseCode = "404", content = {
-                            @Content(
-                                    mediaType = "application/json",
-                                    array = @ArraySchema(schema = @Schema(implementation = ExceptionResponse.class))
-                            )
-                    }),
-                    @ApiResponse(description = "Internal Error", responseCode = "500", content = {
-                            @Content(
-                                    mediaType = "application/json",
-                                    array = @ArraySchema(schema = @Schema(implementation = ExceptionResponse.class))
-                            )
-                    }),
-            }
-    )
-    public void delete(@PathVariable Integer id) throws MyRunTimeException {
-        usuarioFacadeImpl.delete(id);
-    }
 }

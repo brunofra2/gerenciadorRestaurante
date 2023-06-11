@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface ClienteService {
 
-    List<Cliente> findAll();
+    List<Cliente> findAll(Integer page,Integer pageSize);
 
     Cliente findById(Integer id);
 
@@ -16,5 +16,4 @@ public interface ClienteService {
 
     ClienteDto update(ClienteDto cli) throws Exception;
 
-    void delete(Integer id);
 }

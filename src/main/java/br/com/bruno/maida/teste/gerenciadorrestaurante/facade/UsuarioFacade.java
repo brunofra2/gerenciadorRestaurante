@@ -14,5 +14,4 @@ public interface UsuarioFacade {
 
     UsuarioDto update(UsuarioDto user) throws Exception;
 
-    void delete(Integer id) throws MyRunTimeException;
 }

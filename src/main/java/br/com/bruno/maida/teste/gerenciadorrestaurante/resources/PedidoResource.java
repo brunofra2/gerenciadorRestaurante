@@ -243,41 +243,4 @@ public class PedidoResource {
     public ResponseEntity<PedidoDto> update(@RequestBody PedidoDto end) throws MyRunTimeException {
         return ResponseEntity.ok().body(pedidoFacade.update(end));
     }
-
-    @DeleteMapping("/delete/{id}")
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_USER')")
-    @Operation(summary = "Remover", description = "Deleta as informações do pedido selecionado",
-            tags = {"Pedido"},
-            responses = {
-                    @ApiResponse(description = "Success", responseCode = "200",
-                            content = @Content),
-                    @ApiResponse(description = "Bad Request", responseCode = "400", content = {
-                            @Content(
-                                    mediaType = "application/json",
-                                    array = @ArraySchema(schema = @Schema(implementation = ExceptionResponse.class))
-                            )
-                    }),
-                    @ApiResponse(description = "Unauthorized", responseCode = "401", content = {
-                            @Content(
-                                    mediaType = "application/json",
-                                    array = @ArraySchema(schema = @Schema(implementation = ExceptionResponse.class))
-                            )
-                    }),
-                    @ApiResponse(description = "Not Found", responseCode = "404", content = {
-                            @Content(
-                                    mediaType = "application/json",
-                                    array = @ArraySchema(schema = @Schema(implementation = ExceptionResponse.class))
-                            )
-                    }),
-                    @ApiResponse(description = "Internal Error", responseCode = "500", content = {
-                            @Content(
-                                    mediaType = "application/json",
-                                    array = @ArraySchema(schema = @Schema(implementation = ExceptionResponse.class))
-                            )
-                    }),
-            }
-    )
-    public void delete(@PathVariable Integer id){
-        pedidoFacade.delete(id);
-    }
 }

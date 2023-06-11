@@ -112,9 +112,4 @@ public class PedidoServiceImpl implements PedidoService {
                 );
         return vo;
     }
-
-    @Override
-    public void delete(Integer id) {
-        pedidoRepository.delete(pedidoRepository.findById(id).get());
-    }
 }

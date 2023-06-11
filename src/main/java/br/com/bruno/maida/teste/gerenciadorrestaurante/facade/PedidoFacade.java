@@ -16,5 +16,4 @@ public interface PedidoFacade {
 
     PedidoDto update(PedidoDto ped) throws MyRunTimeException;
 
-    void delete(Integer id);
 }

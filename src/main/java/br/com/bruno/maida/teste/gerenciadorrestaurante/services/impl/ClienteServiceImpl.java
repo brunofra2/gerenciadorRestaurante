@@ -10,6 +10,7 @@ import br.com.bruno.maida.teste.gerenciadorrestaurante.services.ClienteService;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.Mapper.ClienteMapper;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.utils.UtilsClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,8 +24,9 @@ public class ClienteServiceImpl implements ClienteService {
     private UsuarioRepository usuarioRepository;
 
     @Override
-    public List<Cliente> findAll() {
-        return clienteRepository.findAll();
+    public List<Cliente> findAll(Integer page,Integer pageSize) {
+        PageRequest pageRequest =PageRequest.of(page - 1,pageSize);
+        return clienteRepository.buscarTodos(pageRequest);
     }
 
     @Override
@@ -49,8 +51,4 @@ public class ClienteServiceImpl implements ClienteService {
         return vo;
     }
 
-    @Override
-    public void delete(Integer id) {
-        clienteRepository.delete(clienteRepository.findById(id).get());
-    }
 }

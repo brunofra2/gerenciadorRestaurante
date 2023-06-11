@@ -16,26 +16,25 @@ public class ProdutoFacadeImpl implements ProdutoFacade {
     @Autowired
     private ProdutoService produtoService;
 
-    public List<ProdutoDto> findall() {
-        return DozerMapper.parseListObjects(produtoService.findall(),ProdutoDto.class);
+    @Override
+    public List<ProdutoDto> findall(Integer page,Integer pageSize) {
+        return DozerMapper.parseListObjects(produtoService.findall(page,pageSize),ProdutoDto.class);
     }
-
+    @Override
     public ProdutoDto findById(Integer id) {
         var pagamento = produtoService.findById(id);
         var pagamentoDto = DozerMapper.parseObject(pagamento, ProdutoDto.class);
         return pagamentoDto;
     }
 
+    @Override
     public ProdutoDto create(ProdutoDto prod) throws MyRunTimeException {
         return produtoService.create(prod);
     }
 
+    @Override
     public ProdutoDto update(ProdutoDto prod) throws MyRunTimeException {
         return produtoService.update(prod);
     }
 
-
-    public void delete(Integer id) {
-        produtoService.delete(id);
-    }
 }

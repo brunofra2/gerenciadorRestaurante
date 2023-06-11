@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface ProdutoService {
 
-    List<Produto> findall();
+    List<Produto> findall(Integer page,Integer pageSize);
 
     Produto findById(Integer id);
 
@@ -16,5 +16,4 @@ public interface ProdutoService {
 
     ProdutoDto update(ProdutoDto pag) throws MyRunTimeException;
 
-    void delete(Integer id);
 }

@@ -71,14 +71,5 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     }
 
-    @Override
-    public void delete(Integer id) throws MyRunTimeException {
-        var usuario = usuarioRepository.findById(id).get();
-        if(usuario.getTypeUser() == TipoUsuario.GESTOR){
-            throw new MyRunTimeException("este usuario não pode ser excluido, por ser um gestor");
-        }else{
-            usuarioRepository.delete(usuario);
-        }
-    }
 
 }

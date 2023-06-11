@@ -64,8 +64,10 @@ public class  ClienteResource  {
                     }),
             }
     )
-    public ResponseEntity<List<ClienteDto>> findAll(){
-        return ResponseEntity.ok().body(clienteFacade.findAll());
+    public ResponseEntity<List<ClienteDto>> findAll(
+            @RequestParam(name = "page", required = false,defaultValue = "1") Integer page,
+            @RequestParam(name = "page-size", required = false,defaultValue = "25") Integer pageSize){
+        return ResponseEntity.ok().body(clienteFacade.findAll(page,pageSize));
     }
 
     @GetMapping("/{id}")
@@ -192,43 +194,6 @@ public class  ClienteResource  {
     )
     public ResponseEntity<ClienteDto> update(@Valid @RequestBody ClienteDto cli) throws Exception {
         return ResponseEntity.ok().body(clienteFacade.update(cli));
-    }
-
-    @DeleteMapping("/delete/{id}")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    @Operation(summary = "Remover", description = "Deleta as informações do cliente selecionado",
-            tags = {"Cliente"},
-            responses = {
-                    @ApiResponse(description = "Success", responseCode = "200",
-                            content = @Content),
-                    @ApiResponse(description = "Bad Request", responseCode = "400", content = {
-                            @Content(
-                                    mediaType = "application/json",
-                                    array = @ArraySchema(schema = @Schema(implementation = ExceptionResponse.class))
-                            )
-                    }),
-                    @ApiResponse(description = "Unauthorized", responseCode = "401", content = {
-                            @Content(
-                                    mediaType = "application/json",
-                                    array = @ArraySchema(schema = @Schema(implementation = ExceptionResponse.class))
-                            )
-                    }),
-                    @ApiResponse(description = "Not Found", responseCode = "404", content = {
-                            @Content(
-                                    mediaType = "application/json",
-                                    array = @ArraySchema(schema = @Schema(implementation = ExceptionResponse.class))
-                            )
-                    }),
-                    @ApiResponse(description = "Internal Error", responseCode = "500", content = {
-                            @Content(
-                                    mediaType = "application/json",
-                                    array = @ArraySchema(schema = @Schema(implementation = ExceptionResponse.class))
-                            )
-                    }),
-            }
-    )
-    public void delete(@PathVariable Integer id){
-        clienteFacade.delete(id);
     }
 }
 

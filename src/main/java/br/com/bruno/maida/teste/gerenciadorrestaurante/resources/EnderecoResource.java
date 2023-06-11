@@ -3,6 +3,7 @@ package br.com.bruno.maida.teste.gerenciadorrestaurante.resources;
 
 import br.com.bruno.maida.teste.gerenciadorrestaurante.data.vo.EnderecoDto;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.exceptions.ExceptionResponse;
+import br.com.bruno.maida.teste.gerenciadorrestaurante.exceptions.MyRunTimeException;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.facade.EnderecoFacade;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -67,12 +68,14 @@ public class EnderecoResource {
                     }),
             }
     )
-    public ResponseEntity<List<EnderecoDto>> findAll(){
-        return ResponseEntity.ok().body(enderecoFacade.findAll());
+    public ResponseEntity<List<EnderecoDto>> findAll(
+            @RequestParam(name = "page", required = false,defaultValue = "1") Integer page,
+            @RequestParam(name = "page-size", required = false,defaultValue = "25") Integer pageSize){
+        return ResponseEntity.ok().body(enderecoFacade.findAll(page,pageSize));
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAuthority('ROLE_USER')")
+    @PreAuthorize("hasAnyAuthority('ROLE_USER','ROLE_ADMIN')")
     @Operation(summary = "Busca por endereço", description = "Realiza a busca dos endereços através do id do cliente",
             tags = {"Endereco"},
             responses = {
@@ -109,8 +112,10 @@ public class EnderecoResource {
                     }),
             }
     )
-    public ResponseEntity<EnderecoDto> findById(@PathVariable Integer id){
-        return ResponseEntity.ok().body(enderecoFacade.findById(id));
+    public ResponseEntity<EnderecoDto> findById(@PathVariable Integer id,
+                                                @RequestParam(name = "page", required = false,defaultValue = "1") Integer page,
+                                                @RequestParam(name = "page-size", required = false,defaultValue = "25") Integer pageSize) throws MyRunTimeException {
+        return ResponseEntity.ok().body(enderecoFacade.findById(id,page,pageSize));
     }
 
     @PostMapping("/create")

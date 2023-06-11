@@ -6,12 +6,11 @@ import br.com.bruno.maida.teste.gerenciadorrestaurante.exceptions.MyRunTimeExcep
 import java.util.List;
 
 public interface ClienteFacade {
-    List<ClienteDto> findAll();
+    List<ClienteDto> findAll(Integer page,Integer pageSize);
     ClienteDto findById(Integer id);
 
     ClienteDto create(ClienteDto cli) throws Exception;
 
     ClienteDto update(ClienteDto cli) throws Exception;
 
-    void delete(Integer id);
 }

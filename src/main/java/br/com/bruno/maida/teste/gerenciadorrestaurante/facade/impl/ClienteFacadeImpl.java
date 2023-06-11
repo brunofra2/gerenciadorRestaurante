@@ -16,25 +16,26 @@ public class ClienteFacadeImpl implements ClienteFacade {
     @Autowired
     private ClienteService clienteService;
 
-    public List<ClienteDto> findAll(){
-       return DozerMapper.parseListObjects(clienteService.findAll(),ClienteDto.class);
+    @Override
+    public List<ClienteDto> findAll(Integer page,Integer pageSize){
+       return DozerMapper.parseListObjects(clienteService.findAll(page,pageSize),ClienteDto.class);
     }
+    @Override
     public ClienteDto findById(Integer id){
         var cliente  = clienteService.findById(id);
         var clienteDto = DozerMapper.parseObject(cliente,ClienteDto.class);
         return  clienteDto;
     }
 
+    @Override
     public ClienteDto create(ClienteDto cli) throws Exception {
         return clienteService.create(cli);
     }
 
+    @Override
     public ClienteDto update(ClienteDto cli) throws Exception {
         return clienteService.update(cli);
     }
 
-    public void delete(Integer id){
-        clienteService.delete(id);
-    }
 
 }

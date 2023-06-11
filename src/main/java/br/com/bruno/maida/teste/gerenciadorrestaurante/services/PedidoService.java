@@ -18,5 +18,4 @@ public interface PedidoService {
 
     PedidoDto update(PedidoDto ped) throws MyRunTimeException;
 
-    void delete(Integer id);
 }
