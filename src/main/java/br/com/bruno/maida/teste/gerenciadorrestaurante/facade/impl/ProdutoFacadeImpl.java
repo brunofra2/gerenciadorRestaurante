@@ -2,6 +2,7 @@ package br.com.bruno.maida.teste.gerenciadorrestaurante.facade.impl;
 
 import br.com.bruno.maida.teste.gerenciadorrestaurante.Mapper.DozerMapper;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.data.vo.ProdutoDto;
+import br.com.bruno.maida.teste.gerenciadorrestaurante.exceptions.MyRunTimeException;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.facade.ProdutoFacade;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.services.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,11 +26,11 @@ public class ProdutoFacadeImpl implements ProdutoFacade {
         return pagamentoDto;
     }
 
-    public ProdutoDto create(ProdutoDto prod) {
+    public ProdutoDto create(ProdutoDto prod) throws MyRunTimeException {
         return produtoService.create(prod);
     }
 
-    public ProdutoDto update(ProdutoDto prod) {
+    public ProdutoDto update(ProdutoDto prod) throws MyRunTimeException {
         return produtoService.update(prod);
     }
 

@@ -2,6 +2,7 @@ package br.com.bruno.maida.teste.gerenciadorrestaurante.resources;
 
 import br.com.bruno.maida.teste.gerenciadorrestaurante.data.vo.ProdutoDto;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.exceptions.ExceptionResponse;
+import br.com.bruno.maida.teste.gerenciadorrestaurante.exceptions.MyRunTimeException;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.facade.ProdutoFacade;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -147,7 +148,7 @@ public class ProdutoResource {
                     }),
             }
     )
-    public ResponseEntity<ProdutoDto> create(@RequestBody ProdutoDto pag){
+    public ResponseEntity<ProdutoDto> create(@RequestBody ProdutoDto pag) throws MyRunTimeException {
         return ResponseEntity.ok().body(produtoFacade.create(pag));
     }
 
@@ -189,7 +190,7 @@ public class ProdutoResource {
                     }),
             }
     )
-    public ResponseEntity<ProdutoDto> update(@RequestBody ProdutoDto pag){
+    public ResponseEntity<ProdutoDto> update(@RequestBody ProdutoDto pag) throws MyRunTimeException {
         return ResponseEntity.ok().body(produtoFacade.update(pag));
     }
 

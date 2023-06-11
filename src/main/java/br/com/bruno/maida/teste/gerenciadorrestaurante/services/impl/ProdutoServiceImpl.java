@@ -2,10 +2,12 @@ package br.com.bruno.maida.teste.gerenciadorrestaurante.services.impl;
 
 import br.com.bruno.maida.teste.gerenciadorrestaurante.Mapper.ProdutoMapper;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.data.vo.ProdutoDto;
+import br.com.bruno.maida.teste.gerenciadorrestaurante.exceptions.MyRunTimeException;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.exceptions.RequiredObjectIsNullException;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.model.Produto;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.repositories.ProdutoRepository;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.services.ProdutoService;
+import br.com.bruno.maida.teste.gerenciadorrestaurante.utils.UtilsProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,17 +29,20 @@ public class ProdutoServiceImpl implements ProdutoService {
     }
 
     @Override
-    public ProdutoDto create(ProdutoDto pag) {
-        if (pag == null) throw new RequiredObjectIsNullException();
-        var entity = ProdutoMapper.convertDtoToModel(pag);
+    public ProdutoDto create(ProdutoDto prod) throws MyRunTimeException {
+
+        if (prod == null) throw new RequiredObjectIsNullException();
+        UtilsProdutoService.verificarCampos(prod);
+        var entity = ProdutoMapper.convertDtoToModel(prod);
         var vo =  ProdutoMapper.convertModelToDto(produtoRepository.save(entity));
         return vo;
     }
 
     @Override
-    public ProdutoDto update(ProdutoDto pag) {
-        if (pag == null) throw new RequiredObjectIsNullException();
-        var entity = ProdutoMapper.convertDtoToModel(pag);
+    public ProdutoDto update(ProdutoDto prod) throws MyRunTimeException {
+        if (prod == null) throw new RequiredObjectIsNullException();
+        UtilsProdutoService.verificarCampos(prod);
+        var entity = ProdutoMapper.convertDtoToModel(prod);
         var vo =  ProdutoMapper.convertModelToDto(produtoRepository.save(entity));
         return vo;
     }
