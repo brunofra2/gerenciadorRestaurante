@@ -15,6 +15,7 @@ public class ClienteMapper {
         dto.setName(origin.getName());
         dto.setTelefone(origin.getTelefone());
         dto.setCpfCnpj(origin.getCpfCnpj());
+        dto.setNascimento(origin.getNascimento());
         dto.setFkUsuario(us);
         return  dto;
     }
@@ -27,6 +28,7 @@ public class ClienteMapper {
         model.setName(origin.getName());
         model.setTelefone(origin.getTelefone());
         model.setCpfCnpj(origin.getCpfCnpj());
+        model.setNascimento(origin.getNascimento());
         model.setFkUsuario(us);
         return model;
     }

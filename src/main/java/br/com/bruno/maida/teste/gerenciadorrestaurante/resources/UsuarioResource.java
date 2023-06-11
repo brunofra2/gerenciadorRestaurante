@@ -25,6 +25,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping(value = "/restaurante/user/")
 @Tag(name = "Usuario", description = "Este endpoint administra os acessos," +
@@ -85,7 +87,7 @@ public class UsuarioResource {
                     }),
             }
     )
-    public String login(@RequestBody LoginDto login) {
+    public String login(@Valid @RequestBody LoginDto login) {
 
         Authentication authenticate = this.authenticationManager
                 .authenticate(new UsernamePasswordAuthenticationToken(login.email(),
@@ -181,7 +183,7 @@ public class UsuarioResource {
                     }),
             }
     )
-    public ResponseEntity<UsuarioDto> create(@RequestBody UsuarioDto user) throws Exception{
+    public ResponseEntity<UsuarioDto> create(@Valid @RequestBody UsuarioDto user) throws Exception{
         return ResponseEntity.ok().body(usuarioFacadeImpl.create(user));
     }
 
@@ -223,7 +225,7 @@ public class UsuarioResource {
                     }),
             }
     )
-    public ResponseEntity<UsuarioDto> update(@RequestBody UsuarioDto user) throws Exception{
+    public ResponseEntity<UsuarioDto> update(@Valid @RequestBody UsuarioDto user) throws Exception{
         return ResponseEntity.ok().body(usuarioFacadeImpl.update(user));
     }
 

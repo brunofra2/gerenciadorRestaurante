@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -150,7 +151,7 @@ public class EnderecoResource {
                     }),
             }
     )
-    public ResponseEntity<EnderecoDto> create(@RequestBody EnderecoDto end){
+    public ResponseEntity<EnderecoDto> create( @Valid @RequestBody EnderecoDto end){
         return ResponseEntity.ok().body(enderecoFacade.create(end));
     }
 
@@ -193,7 +194,7 @@ public class EnderecoResource {
                     }),
             }
     )
-    public ResponseEntity<EnderecoDto> update(@RequestBody EnderecoDto end){
+    public ResponseEntity<EnderecoDto> update(@Valid @RequestBody EnderecoDto end){
         return ResponseEntity.ok().body(enderecoFacade.update(end));
     }
 

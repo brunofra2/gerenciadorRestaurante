@@ -12,9 +12,9 @@ public interface ClienteService {
 
     Cliente findById(Integer id);
 
-    ClienteDto create(ClienteDto cli) throws MyRunTimeException;
+    ClienteDto create(ClienteDto cli) throws MyRunTimeException, Exception;
 
-    ClienteDto update(ClienteDto cli) throws MyRunTimeException;
+    ClienteDto update(ClienteDto cli) throws Exception;
 
     void delete(Integer id);
 }

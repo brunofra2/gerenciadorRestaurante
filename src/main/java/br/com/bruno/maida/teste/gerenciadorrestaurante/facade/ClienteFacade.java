@@ -9,9 +9,9 @@ public interface ClienteFacade {
     List<ClienteDto> findAll();
     ClienteDto findById(Integer id);
 
-    ClienteDto create(ClienteDto cli) throws MyRunTimeException;
+    ClienteDto create(ClienteDto cli) throws Exception;
 
-    ClienteDto update(ClienteDto cli) throws MyRunTimeException;
+    ClienteDto update(ClienteDto cli) throws Exception;
 
     void delete(Integer id);
 }

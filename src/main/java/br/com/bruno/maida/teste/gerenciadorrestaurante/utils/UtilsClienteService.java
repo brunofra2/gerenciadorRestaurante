@@ -10,9 +10,11 @@ import br.com.bruno.maida.teste.gerenciadorrestaurante.repositories.UsuarioRepos
 
 public class UtilsClienteService {
 
-    public static ClienteDto verificaçõesdeCampos(
+    /** realiza a verificação das regras
+     *  para realização de adição ou ateração do cliente**/
+    public static ClienteDto verificacoesdeCampos(
             UsuarioRepository usuarioRepository, ClienteDto cli,
-            ClienteRepository clienteRepository,String acao) throws MyRunTimeException {
+            ClienteRepository clienteRepository,String acao) throws Exception {
         var usuario = usuarioRepository.findUsuario(Utils.captUsuarioLogado());
         if(usuario.getTypeUser() == TipoUsuario.GESTOR){
             throw new MyRunTimeException("Este usuario não pode ser cliente");
@@ -22,18 +24,17 @@ public class UtilsClienteService {
 
         cli.setFkUsuario(new UsuarioDto().builder().id(usuario.getId()).build());
 
-        if(acao == null){
-            if(clienteRepository.verifyDuplicidade(cli.getFkUsuario().getId()) != null)
-                throw new MyRunTimeException("usuario já é um cliente");
-        }
         return cli;
     }
 
-    public static ClienteDto verificaçõesdeCamposUpdate(
+    /** verifica o usuario logado
+     * e adiciona o a id do seu cliente
+     * para realização da alteração**/
+    public static ClienteDto verificacoesdeCamposUpdate(
             UsuarioRepository usuarioRepository, ClienteDto cli,
-            ClienteRepository clienteRepository) throws MyRunTimeException {
+            ClienteRepository clienteRepository) throws Exception {
         var cliente = clienteRepository.verifyClienteLogado(Utils.captUsuarioLogado());
         cli.setId(cliente.getId());
-        return verificaçõesdeCampos(usuarioRepository,cli,clienteRepository,"update");
+        return verificacoesdeCampos(usuarioRepository,cli,clienteRepository,"update");
     }
 }

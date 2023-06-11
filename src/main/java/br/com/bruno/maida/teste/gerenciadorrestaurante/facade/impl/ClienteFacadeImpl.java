@@ -25,11 +25,11 @@ public class ClienteFacadeImpl implements ClienteFacade {
         return  clienteDto;
     }
 
-    public ClienteDto create(ClienteDto cli) throws MyRunTimeException {
+    public ClienteDto create(ClienteDto cli) throws Exception {
         return clienteService.create(cli);
     }
 
-    public ClienteDto update(ClienteDto cli) throws MyRunTimeException {
+    public ClienteDto update(ClienteDto cli) throws Exception {
         return clienteService.update(cli);
     }
 

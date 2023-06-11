@@ -33,17 +33,17 @@ public class ClienteServiceImpl implements ClienteService {
     }
 
     @Override
-    public ClienteDto create(ClienteDto cli) throws MyRunTimeException {
-        UtilsClienteService.verificaçõesdeCampos(usuarioRepository,cli,clienteRepository,null);
+    public ClienteDto create(ClienteDto cli) throws Exception {
+        UtilsClienteService.verificacoesdeCampos(usuarioRepository,cli,clienteRepository,null);
         var entity = ClienteMapper.convertDtoToModel(cli);
         var vo =  ClienteMapper.convertModelToDto(clienteRepository.save(entity));
         return vo;
     }
 
     @Override
-    public ClienteDto update(ClienteDto cli) throws MyRunTimeException{
+    public ClienteDto update(ClienteDto cli) throws Exception {
 
-        UtilsClienteService.verificaçõesdeCamposUpdate(usuarioRepository,cli,clienteRepository);
+        UtilsClienteService.verificacoesdeCamposUpdate(usuarioRepository,cli,clienteRepository);
         var entity = ClienteMapper.convertDtoToModel(cli);
         var vo =  ClienteMapper.convertModelToDto(clienteRepository.save(entity));
         return vo;

@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -147,7 +148,7 @@ public class  ClienteResource  {
                     }),
             }
     )
-    public ResponseEntity<ClienteDto> create(@RequestBody ClienteDto cli) throws MyRunTimeException {
+    public ResponseEntity<ClienteDto> create(@Valid @RequestBody ClienteDto cli) throws Exception {
         return ResponseEntity.ok().body(clienteFacade.create(cli));
     }
 
@@ -189,7 +190,7 @@ public class  ClienteResource  {
                     }),
             }
     )
-    public ResponseEntity<ClienteDto> update(@RequestBody ClienteDto cli) throws MyRunTimeException {
+    public ResponseEntity<ClienteDto> update(@Valid @RequestBody ClienteDto cli) throws Exception {
         return ResponseEntity.ok().body(clienteFacade.update(cli));
     }
 

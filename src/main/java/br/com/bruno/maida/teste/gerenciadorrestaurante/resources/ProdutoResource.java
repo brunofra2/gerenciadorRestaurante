@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -148,7 +149,7 @@ public class ProdutoResource {
                     }),
             }
     )
-    public ResponseEntity<ProdutoDto> create(@RequestBody ProdutoDto pag) throws MyRunTimeException {
+    public ResponseEntity<ProdutoDto> create(@Valid @RequestBody ProdutoDto pag) throws MyRunTimeException {
         return ResponseEntity.ok().body(produtoFacade.create(pag));
     }
 
@@ -190,7 +191,7 @@ public class ProdutoResource {
                     }),
             }
     )
-    public ResponseEntity<ProdutoDto> update(@RequestBody ProdutoDto pag) throws MyRunTimeException {
+    public ResponseEntity<ProdutoDto> update(@Valid @RequestBody ProdutoDto pag) throws MyRunTimeException {
         return ResponseEntity.ok().body(produtoFacade.update(pag));
     }
 

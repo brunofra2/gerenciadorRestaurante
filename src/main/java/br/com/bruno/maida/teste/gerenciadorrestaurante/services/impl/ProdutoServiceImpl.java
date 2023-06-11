@@ -7,7 +7,6 @@ import br.com.bruno.maida.teste.gerenciadorrestaurante.exceptions.RequiredObject
 import br.com.bruno.maida.teste.gerenciadorrestaurante.model.Produto;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.repositories.ProdutoRepository;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.services.ProdutoService;
-import br.com.bruno.maida.teste.gerenciadorrestaurante.utils.UtilsProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,9 +29,7 @@ public class ProdutoServiceImpl implements ProdutoService {
 
     @Override
     public ProdutoDto create(ProdutoDto prod) throws MyRunTimeException {
-
         if (prod == null) throw new RequiredObjectIsNullException();
-        UtilsProdutoService.verificarCampos(prod);
         var entity = ProdutoMapper.convertDtoToModel(prod);
         var vo =  ProdutoMapper.convertModelToDto(produtoRepository.save(entity));
         return vo;
@@ -41,7 +38,6 @@ public class ProdutoServiceImpl implements ProdutoService {
     @Override
     public ProdutoDto update(ProdutoDto prod) throws MyRunTimeException {
         if (prod == null) throw new RequiredObjectIsNullException();
-        UtilsProdutoService.verificarCampos(prod);
         var entity = ProdutoMapper.convertDtoToModel(prod);
         var vo =  ProdutoMapper.convertModelToDto(produtoRepository.save(entity));
         return vo;

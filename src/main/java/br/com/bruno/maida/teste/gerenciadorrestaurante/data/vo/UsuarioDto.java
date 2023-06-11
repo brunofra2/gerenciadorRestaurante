@@ -10,6 +10,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
 /**
@@ -21,13 +22,22 @@ import java.io.Serializable;
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class UsuarioDto implements Serializable {
+
+    @JsonProperty("identificação")
     private Integer id;
-    @JsonProperty("email")
+
+    @NotEmpty(message = "O campo 'email para acesso' é um campo obrigatório")
+    @JsonProperty("email para acesso")
     private String email;
-    @JsonProperty("senha")
+
+    @NotEmpty(message = "O campo 'senha de acesso' é um campo obrigatório")
+    @JsonProperty("senha de acesso")
     private String password;
-    @JsonProperty("nome")
+
+    @NotEmpty(message = "O campo 'nome usuario ou estabelecimento' é um campo obrigatório")
+    @JsonProperty("nome usuario ou estabelecimento")
     private String name;
-    @JsonProperty("tipoUsuario")
+
+    @JsonProperty("permissão de acesso")
     private TipoUsuarioDto typeUser;
 }

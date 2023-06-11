@@ -1,6 +1,7 @@
 package br.com.bruno.maida.teste.gerenciadorrestaurante.handler;
 
 import java.util.Date;
+import java.util.Objects;
 
 import br.com.bruno.maida.teste.gerenciadorrestaurante.exceptions.ExceptionResponse;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.exceptions.InvalidJwtAuthenticationException;
@@ -10,10 +11,14 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.lang.Nullable;
+import org.springframework.stereotype.Component;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 
@@ -33,6 +38,8 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
 
 		return new ResponseEntity<>(exceptionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
+
+
 
 	@ExceptionHandler(ResourceNotFoundException.class)
 	public final ResponseEntity<ExceptionResponse> handleNotFoundExceptions(
@@ -85,5 +92,17 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
 
 		return new ResponseEntity<>(body, headers, status);
 	}
+
+	@Override
+	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+		ExceptionResponse exceptionResponse = new ExceptionResponse(
+				new Date(),
+				String.valueOf(status.value()),
+				ex.getMessage(),
+				request.getDescription(false));
+
+		return new ResponseEntity<>(exceptionResponse, headers, status);
+	}
+
 
 }
