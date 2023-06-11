@@ -159,8 +159,7 @@ public class EnderecoResource {
     }
 
     @PutMapping("/update")
-
-    @PreAuthorize("hasAuthority(ROLE_USER)")
+    @PreAuthorize("hasAuthority('ROLE_USER')")
     @Operation(summary = "Alterar", description = "Realiza a modificação de um endereço",
             tags = {"Endereco"},
             responses = {
@@ -202,7 +201,7 @@ public class EnderecoResource {
     }
 
     @DeleteMapping("/delete/{id}")
-    @PreAuthorize("hasAuthority(ROLE_USER)")
+    @PreAuthorize("hasAuthority('ROLE_USER')")
     @Operation(summary = "Remover", description = "Deleta as informações do endereço selecionado",
             tags = {"Endereco"},
             responses = {
