@@ -8,6 +8,7 @@ import br.com.bruno.maida.teste.gerenciadorrestaurante.services.EnderecoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -16,13 +17,14 @@ public class EnderecoFacadeImpl implements EnderecoFacade {
     @Autowired
     private EnderecoService enderecoService;
     @Override
-    public List<EnderecoDto> findAll(Integer id,Integer page,Integer pageSize){
+    public List<EnderecoDto> findAll(Integer page,Integer pageSize){
+
         return DozerMapper.parseListObjects(enderecoService.findAll(page,pageSize),EnderecoDto.class);
     }
 
     @Override
-    public EnderecoDto findById(Integer id,Integer page, Integer pageSize) throws MyRunTimeException {
-        var endereco  = enderecoService.findById(id,page,pageSize);
+    public EnderecoDto findById(Integer id) throws MyRunTimeException {
+        var endereco  = enderecoService.findById(id);
          return DozerMapper.parseObject(endereco,EnderecoDto.class);
     }
 

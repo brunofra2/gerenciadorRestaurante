@@ -31,7 +31,7 @@ public class EnderecoResource {
 
     @GetMapping("/all")
 
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ROLE_USER','ROLE_ADMIN')")
     @Operation(summary = "Busca", description = "Realiza a busca por Endereços, trazendo o todos os pedidos",
             tags = {"Endereco"},
             responses = {
@@ -112,10 +112,8 @@ public class EnderecoResource {
                     }),
             }
     )
-    public ResponseEntity<EnderecoDto> findById(@PathVariable Integer id,
-                                                @RequestParam(name = "page", required = false,defaultValue = "1") Integer page,
-                                                @RequestParam(name = "page-size", required = false,defaultValue = "25") Integer pageSize) throws MyRunTimeException {
-        return ResponseEntity.ok().body(enderecoFacade.findById(id,page,pageSize));
+    public ResponseEntity<EnderecoDto> findById(@PathVariable Integer id) throws MyRunTimeException {
+        return ResponseEntity.ok().body(enderecoFacade.findById(id));
     }
 
     @PostMapping("/create")

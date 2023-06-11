@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface EnderecoFacade {
 
-    List<EnderecoDto> findAll(Integer id,Integer page,Integer pageSize);
+    List<EnderecoDto> findAll(Integer page,Integer pageSize);
 
-    EnderecoDto findById(Integer id,Integer page,Integer pageSize) throws MyRunTimeException;
+    EnderecoDto findById(Integer id) throws MyRunTimeException;
 
     EnderecoDto create(EnderecoDto end);
 

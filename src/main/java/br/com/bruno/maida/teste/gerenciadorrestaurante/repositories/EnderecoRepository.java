@@ -14,26 +14,26 @@ import java.util.List;
 @Repository
 public interface EnderecoRepository extends JpaRepository<Endereco,Integer> {
 
-    @Transactional
+    @Transactional(readOnly = true)
     @Query(value = "SELECT * FROM endereco WHERE endereco.fk_cliente IN(\n" +
             "SELECT cliente.cliente_id FROM cliente,usuario WHERE cliente.fk_usuario = usuario.usuario_id \n" +
             "AND usuario.email = :email \n" +
             ") ",nativeQuery = true)
-    List<Endereco> findUsuarioEmail(@Param("email") String email);
+    List<Endereco> findUsuarioEmail(@Param("email") String email, Pageable pageable);
 
 
-    @Transactional
+    @Transactional(readOnly = true)
     @Query(value = "SELECT * FROM endereco WHERE endereco.fk_cliente IN(\n" +
             "SELECT cliente.cliente_id FROM cliente,usuario WHERE cliente.fk_usuario = usuario.usuario_id \n" +
             "AND usuario.email = :email\n" +
             ") AND endereco.endereco_id = :id",nativeQuery = true)
-    Endereco findUsuarioEmailById(@Param("email") String email, Integer id, Pageable pageable);
+    Endereco findUsuarioEmailById(@Param("email") String email, Integer id);
 
-    @Transactional
+    @Transactional(readOnly = true)
     @Query(value = "SELECT * FROM endereco",nativeQuery = true)
     List<Endereco> buscarTodos(Pageable pageable);
 
-    @Transactional
+    @Transactional(readOnly = true)
     @Query(value = "SELECT * FROM cliente WHERE cliente.fk_usuario IN (\n" +
             "SELECT usuario.usuario_id FROM usuario WHERE usuario.email = :email)",nativeQuery = true)
     Cliente verifyClienteLogado(@Param("email") String email);

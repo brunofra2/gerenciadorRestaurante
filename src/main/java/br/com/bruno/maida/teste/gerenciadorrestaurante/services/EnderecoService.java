@@ -10,7 +10,7 @@ public interface EnderecoService {
 
     List<Endereco> findAll(Integer page,Integer pageSize);
 
-    Endereco findById(Integer id,Integer page, Integer pageSize) throws MyRunTimeException;
+    Endereco findById(Integer id) throws MyRunTimeException;
 
     EnderecoDto create(EnderecoDto end);
 

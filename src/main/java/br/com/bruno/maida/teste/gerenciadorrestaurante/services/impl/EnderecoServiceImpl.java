@@ -40,19 +40,18 @@ public class EnderecoServiceImpl implements EnderecoService {
             return enderecoRepository.buscarTodos(pageRequest);
         }else{
 
-            return enderecoRepository.findUsuarioEmail(Utils.captUsuarioLogado());
+            return enderecoRepository.findUsuarioEmail(Utils.captUsuarioLogado(),pageRequest);
         }
     }
 
     @Override
-    public Endereco findById(Integer id,Integer page, Integer pageSize) throws MyRunTimeException {
+    public Endereco findById(Integer id) throws MyRunTimeException {
         var usuarioLogado = usuarioRepository.findUsuario(captUsuarioLogado());
-        PageRequest pageRequest =PageRequest.of(page - 1,pageSize);
         if(usuarioLogado.getTypeUser() == TipoUsuario.GESTOR){
             return enderecoRepository.findById(id).get();
         }else{
 
-            var endereco = enderecoRepository.findUsuarioEmailById(Utils.captUsuarioLogado(),id,pageRequest);
+            var endereco = enderecoRepository.findUsuarioEmailById(Utils.captUsuarioLogado(),id);
             if(endereco == null){
                 throw new MyRunTimeException("você não tem permissão para acessar este endereço");
             }else {
