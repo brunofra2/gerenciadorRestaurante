@@ -1,5 +1,6 @@
 package br.com.bruno.maida.teste.gerenciadorrestaurante.data.vo;
 
+import br.com.bruno.maida.teste.gerenciadorrestaurante.data.vo.enuns.SituacoesDto;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -19,13 +20,14 @@ import java.util.List;
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class PedidoDto implements Serializable {
+    @JsonProperty("identificação")
     private Integer id;
-    @JsonProperty("situacao")
-    private String status;
-    @JsonProperty("valorPedido")
+    @JsonProperty("situação")
+    private SituacoesDto status;
+    @JsonProperty("valor do pedido")
     private Double total;
-    @JsonProperty("cliente")
+    @JsonProperty("informações cliente")
     private ClienteDto fkCliente;
-    @JsonProperty("produtos")
+    @JsonProperty("listagem de produtos")
     private List<ProdutoDto> produtoDtolist;
 }

@@ -6,6 +6,7 @@ import br.com.bruno.maida.teste.gerenciadorrestaurante.data.vo.UsuarioDto;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.exceptions.MyRunTimeException;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.model.Pedido;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.model.Produto;
+import br.com.bruno.maida.teste.gerenciadorrestaurante.model.ProdutoPedido;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.model.enuns.TipoUsuario;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.repositories.*;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.services.PedidoService;
@@ -63,10 +64,9 @@ public class PedidoServiceImpl implements PedidoService {
     public Pedido findById(Integer id) {
         var usuarioLogado = usuarioRepository.findUsuario(captUsuarioLogado());
         if(usuarioLogado.getTypeUser() == TipoUsuario.GESTOR){
-            return trazerprodutosbyId(pedidoRepository.findById(id).get()
-                    ,produtoPedidoRepository);
+            return pedidoRepository.findById(id).get();
         }else{
-            return trazerprodutosbyId(pedidoRepository.findUsuarioEmailByid(Utils.captUsuarioLogado(),id),produtoPedidoRepository);
+            return pedidoRepository.findUsuarioEmailByid(Utils.captUsuarioLogado(),id);
 
         }
         }
@@ -75,7 +75,7 @@ public class PedidoServiceImpl implements PedidoService {
     public PedidoDto create(PedidoDto ped) {
         criarPedido(ped,produtoRepository,clienteRepository);
         var entity = PedidoMapper.convertDtoToModel(ped);
-        var vo =  PedidoMapper.convertModelToDto(pedidoRepository.save(entity));
+        var vo =  PedidoMapper.convertModelToDto(pedidoRepository.save(entity),"create");
         return salvarManytoMany(entity,produtoPedidoRepository,
                 ped,vo,produtoRepository,clienteRepository);
     }
@@ -83,24 +83,14 @@ public class PedidoServiceImpl implements PedidoService {
 
 
     @Override
-    public PedidoDto update(PedidoDto ped) {
-        var pedido = pedidoRepository.findById(ped.getId()).get();
-        if (ped == null) throw new RequiredObjectIsNullException();
-        List<ProdutoDto> produtoList = new ArrayList<>();
-        for (Produto p: pedido.getProdutoList()
-             ) {
-            produtoList.add(new ProdutoDto().builder().id(p.getId()).build());
-        }
-        ped.setTotal(pedido.getTotal());
-        ped.setFkCliente(new ClienteDto().builder()
-                .id(pedido.getId())
-                .fkUsuario(
-                        new UsuarioDto().builder()
-                                .id(pedido.getFkCliente().getFkUsuario().getId()).build()
-                ).build());
-        ped.setProdutoDtolist(produtoList);
-        var entity = PedidoMapper.convertDtoToModel(ped);
-        var vo =  PedidoMapper.convertModelToDto(pedidoRepository.save(entity));
+    public PedidoDto update(PedidoDto ped) throws MyRunTimeException {
+
+        var entity = PedidoMapper.convertDtoToModel(
+                alterarPedido(pedidoRepository.findById(ped.getId()).get(),ped,usuarioRepository));
+        var vo =  PedidoMapper.convertModelToDto(pedidoRepository.save(entity),"create");
+        organizarInformacoes(vo,clienteRepository
+                ,produtoRepository,produtoPedidoRepository
+                );
         return vo;
     }
 

@@ -1,5 +1,6 @@
 package br.com.bruno.maida.teste.gerenciadorrestaurante.model;
 
+import br.com.bruno.maida.teste.gerenciadorrestaurante.model.enuns.Situacoes;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,7 +23,7 @@ public class Pedido implements Serializable {
     private Integer id;
 
     @Column(name = "status")
-    private String status;
+    private Situacoes status;
 
     @Column(name = "total")
     private Double total;

@@ -3,6 +3,7 @@ package br.com.bruno.maida.teste.gerenciadorrestaurante.resources;
 
 import br.com.bruno.maida.teste.gerenciadorrestaurante.data.vo.PedidoDto;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.exceptions.ExceptionResponse;
+import br.com.bruno.maida.teste.gerenciadorrestaurante.exceptions.MyRunTimeException;
 import br.com.bruno.maida.teste.gerenciadorrestaurante.facade.PedidoFacade;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -154,7 +155,7 @@ public class PedidoResource {
     }
 
     @PutMapping("/update")
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_USER')")
+    @PreAuthorize("permitAll()")
     @Operation(summary = "Alterar", description = "Realiza a alteração de pedido",
             tags = {"Pedido"},
             responses = {
@@ -191,7 +192,7 @@ public class PedidoResource {
                     }),
             }
     )
-    public ResponseEntity<PedidoDto> update(@RequestBody PedidoDto end){
+    public ResponseEntity<PedidoDto> update(@RequestBody PedidoDto end) throws MyRunTimeException {
         return ResponseEntity.ok().body(pedidoFacade.update(end));
     }
 
