@@ -17,6 +17,7 @@ import br.com.bruno.maida.teste.gerenciadorrestaurante.utils.Utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
@@ -48,23 +49,26 @@ public class PedidoServiceImpl implements PedidoService {
 
 
     @Override
-    public List<Pedido> findAll() {
+    public List<Pedido> findAll(Integer page, Integer pageSize) {
         var usuarioLogado = usuarioRepository.findUsuario(captUsuarioLogado());
+        PageRequest pageRequest =PageRequest.of(page - 1,pageSize);
         if(usuarioLogado.getTypeUser() == TipoUsuario.GESTOR){
-            return pedidoRepository.findAll();
+            return pedidoRepository.buscarTodos(pageRequest);
         }else{
-            return pedidoRepository.findUsuarioEmail(Utils.captUsuarioLogado());
+            return pedidoRepository.findUsuarioEmail(Utils.captUsuarioLogado(),pageRequest);
         }
 
 
     }
 
-    public List<Pedido> findFinally() {
+    @Override
+    public List<Pedido> findFinally( Integer page, Integer pageSize) {
         var usuarioLogado = usuarioRepository.findUsuario(captUsuarioLogado());
+        PageRequest pageRequest =PageRequest.of(page - 1,pageSize);
         if(usuarioLogado.getTypeUser() == TipoUsuario.GESTOR){
-            return pedidoRepository.findAllfinaly();
+            return pedidoRepository.findAllfinaly(pageRequest);
         }else{
-            return pedidoRepository.findfinaly(Utils.captUsuarioLogado());
+            return pedidoRepository.findfinaly(Utils.captUsuarioLogado(),pageRequest);
         }
 
 

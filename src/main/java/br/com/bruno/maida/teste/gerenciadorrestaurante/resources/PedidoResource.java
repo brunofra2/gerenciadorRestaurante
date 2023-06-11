@@ -66,8 +66,10 @@ public class PedidoResource {
                     }),
             }
     )
-    public List<PedidoDto> findAll(){
-        return pedidoFacade.findAll();
+    public ResponseEntity<List<PedidoDto>> findAll(
+            @RequestParam(name = "page", required = false,defaultValue = "1") Integer page,
+            @RequestParam(name = "page-size", required = false,defaultValue = "25") Integer pageSize){
+        return ResponseEntity.ok().body(pedidoFacade.findAll(page,pageSize));
     }
 
     @GetMapping("/finalizados")
@@ -110,8 +112,10 @@ public class PedidoResource {
                     }),
             }
     )
-    public List<PedidoDto> findfinally(){
-        return pedidoFacade.findfinally();
+    public ResponseEntity<List<PedidoDto>> findfinally(
+            @RequestParam(name = "page", required = false,defaultValue = "1") Integer page,
+            @RequestParam(name = "page-size", required = false,defaultValue = "25") Integer pageSize){
+        return ResponseEntity.ok().body(pedidoFacade.findfinally(page,pageSize));
     }
 
     @GetMapping("/{id}")

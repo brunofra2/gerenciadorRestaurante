@@ -8,8 +8,8 @@ import java.util.List;
 
 public interface PedidoFacade {
 
-    List<PedidoDto> findAll();
-    List<PedidoDto> findfinally();
+    List<PedidoDto> findAll(Integer page, Integer pageSize);
+    List<PedidoDto> findfinally(Integer page, Integer pageSize);
     PedidoDto findById(Integer id) throws MyRunTimeException;
 
     PedidoDto create(PedidoDto ped);

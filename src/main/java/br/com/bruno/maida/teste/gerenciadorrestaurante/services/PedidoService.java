@@ -8,9 +8,9 @@ import java.util.List;
 
 public interface PedidoService {
 
-    List<Pedido> findAll();
+    List<Pedido> findAll(Integer page, Integer pageSize);
 
-    public List<Pedido> findFinally();
+    public List<Pedido> findFinally(Integer page, Integer pageSize);
 
     Pedido findById(Integer id) throws MyRunTimeException;
 

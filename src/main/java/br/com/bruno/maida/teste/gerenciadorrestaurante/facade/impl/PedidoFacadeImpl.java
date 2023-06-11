@@ -19,9 +19,9 @@ public class PedidoFacadeImpl implements PedidoFacade {
     @Autowired
     private PedidoService pedidoService;
 
-    public List<PedidoDto> findAll(){
+    public List<PedidoDto> findAll(Integer page, Integer pageSize){
 
-        var pedidolist  = pedidoService.findAll();
+        var pedidolist  = pedidoService.findAll(page,pageSize);
         List<PedidoDto> lista = new ArrayList<>();
         for (Pedido ped: pedidolist
              ) {
@@ -31,8 +31,8 @@ public class PedidoFacadeImpl implements PedidoFacade {
     }
 
     @Override
-    public List<PedidoDto> findfinally() {
-        var pedidolist  = pedidoService.findFinally();
+    public List<PedidoDto> findfinally(Integer page, Integer pageSize) {
+        var pedidolist  = pedidoService.findFinally(page,pageSize);
         List<PedidoDto> lista = new ArrayList<>();
         for (Pedido ped: pedidolist
         ) {
