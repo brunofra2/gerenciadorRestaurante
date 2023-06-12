@@ -1,75 +1,76 @@
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\Mapper\UsuarioMapper.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\resources\FormaPagamentoResource.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\repositories\ClienteRepository.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\handler\CustomizedResponseEntityExceptionHandler.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\resources\ProdutoResource.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\model\FormaPagamento.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\services\PagamentoService.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\facade\impl\PagamentofacadeImpl.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\Mapper\DozerMapper.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\resources\PedidoResource.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\data\vo\ClienteDto.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\facade\impl\PedidoFacadeImpl.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\exceptions\FileStorageException.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\BagrinbackendApplication.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\repositories\ProdutoRepository.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\model\Pagamento.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\services\ClienteService.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\data\vo\PagamentoDto.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\exceptions\ExceptionResponse.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\facade\impl\ProdutoFacadeImpl.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\services\PedidoService.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\data\vo\ProdutoDto.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\repositories\PedidoRepository.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\data\vo\EnderecoDto.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\model\Pedido.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\services\PedidoProdutoService.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\Mapper\FormaPagamentoMapper.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\data\vo\PedidoProdutoDto.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\exceptions\MyFileNotFoundException.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\services\FormaPagamentoService.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\services\impl\PagamentoServiceImpl.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\services\impl\ProdutoServiceImpl.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\resources\PedidoProdutoResource.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\Mapper\ProdutoMapper.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\services\UsuarioService.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\exceptions\InvalidJwtAuthenticationException.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\resources\EnderecoResource.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\repositories\PedidoProdutoRepository.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\config\SwaggerConfig.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\resources\ClienteResource.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\services\impl\FormaPagamentoServiceImpl.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\repositories\FormaPagmentoRepository.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\facade\impl\UsuarioFacadeImpl.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\model\Cliente.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\data\vo\PedidoDto.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\Mapper\EnderecoMapper.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\model\Usuario.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\Mapper\PedidoMapper.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\Mapper\PedidoProdutoMapper.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\services\impl\EnderecoServiceImpl.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\data\vo\UsuarioDto.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\services\EnderecoService.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\Mapper\ClienteMapper.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\services\impl\UsuarioServiceImpl.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\model\Endereco.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\services\impl\ClienteServiceImpl.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\services\impl\PedidoProdutoServiceImpl.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\repositories\UsuarioRepository.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\resources\PagamentoResource.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\config\MainConfiguration.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\services\impl\PedidoServiceImpl.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\data\vo\FormaPagamentoDto.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\exceptions\ResourceNotFoundException.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\facade\impl\EnderecoFacadeImpl.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\facade\impl\FormaPagamentoFacadeImpl.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\exceptions\RequiredObjectIsNullException.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\model\PedidoProduto.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\Mapper\PagamentoMapper.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\services\ProdutoService.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\resources\UsuarioResource.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\facade\impl\ClienteFacadeImpl.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\facade\impl\PedidoProdutoFacadeImpl.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\repositories\PagamentoRepository.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\model\Produto.java
-A:\loja virtual\bagrin\bagrinbackend\src\main\java\br\com\bagrin\bagrinbackend\repositories\EnderecoRepository.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\exceptions\MyForbidenException.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\exceptions\InvalidJwtAuthenticationException.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\Mapper\PedidoMapper.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\Mapper\ProdutoMapper.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\facade\impl\PedidoFacadeImpl.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\GerenciadorRestauranteApplication.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\Mapper\DozerMapper.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\facade\impl\EnderecoFacadeImpl.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\resources\ProdutoResource.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\exceptions\MyRunTimeException.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\exceptions\RequiredObjectIsNullException.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\exceptions\ExceptionResponse.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\services\impl\ProdutoServiceImpl.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\config\security\MyUserDetailsServices.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\facade\PedidoFacade.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\model\ProdutoPedido.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\data\vo\ProdutoDto.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\model\Endereco.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\Mapper\EnderecoMapper.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\model\Pedido.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\services\impl\PedidoServiceImpl.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\services\ProdutoService.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\services\impl\UsuarioServiceImpl.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\model\Cliente.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\model\enuns\Situacoes.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\services\impl\EnderecoServiceImpl.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\repositories\ProdutoRepository.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\facade\impl\ClienteFacadeImpl.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\utils\UtilsPedidoService.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\facade\UsuarioFacade.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\data\vo\ClienteDto.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\resources\UsuarioResource.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\exceptions\ResourceNotFoundException.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\data\vo\EnderecoDto.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\data\vo\enuns\CategoriaDto.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\data\vo\enuns\SituacoesDto.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\exceptions\MyBadRequestException.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\model\Usuario.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\services\impl\ClienteServiceImpl.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\utils\UtilsClienteService.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\resources\ClienteResource.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\data\vo\enuns\TipoUsuarioDto.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\repositories\EnderecoRepository.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\services\PedidoService.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\utils\Utils.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\facade\EnderecoFacade.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\config\MainConfiguration.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\config\WebConfig.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\services\impl\TokenService.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\facade\impl\UsuarioFacadeImpl.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\handler\CustomizedResponseEntityExceptionHandler.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\data\vo\UsuarioDto.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\Mapper\ClienteMapper.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\model\Produto.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\config\security\FilterToken.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\data\vo\LoginDto.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\data\vo\PedidoDto.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\repositories\ClienteRepository.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\repositories\UsuarioRepository.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\facade\ClienteFacade.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\repositories\ProdutoPedidoRepository.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\services\UsuarioService.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\repositories\PedidoRepository.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\resources\EnderecoResource.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\facade\impl\ProdutoFacadeImpl.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\services\ClienteService.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\resources\PedidoResource.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\exceptions\MyFileNotFoundException.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\model\enuns\TipoUsuario.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\utils\UtilsEnderecoService.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\Mapper\UsuarioMapper.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\model\enuns\Categorias.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\services\EnderecoService.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\config\configuration.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\config\SwaggerConfig.java
+H:\teste_maida\gerenciadorRestaurante\src\main\java\br\com\bruno\maida\teste\gerenciadorrestaurante\facade\ProdutoFacade.java
